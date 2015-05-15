@@ -13,10 +13,9 @@
 
 @interface Tier : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * priceArtefactPerMonth;
-@property (nonatomic, retain) NSNumber * artefactMin;
 @property (nonatomic, retain) NSNumber * artefactMax;
 @property (nonatomic, retain) Bill *bill;
+@property (nonatomic, retain) Tier *lowerTier;
 
 @end

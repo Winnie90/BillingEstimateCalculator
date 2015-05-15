@@ -21,14 +21,13 @@
     </entity>
     <entity name="Tier" representedClassName="Tier" syncable="YES">
         <attribute name="artefactMax" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="artefactMin" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="priceArtefactPerMonth" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="bill" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bill" inverseName="tiers" inverseEntity="Bill" syncable="YES"/>
+        <relationship name="lowerTier" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tier" inverseName="lowerTier" inverseEntity="Tier" syncable="YES"/>
     </entity>
     <elements>
         <element name="Company" positionX="-63" positionY="-18" width="128" height="148"/>
         <element name="Bill" positionX="214" positionY="6" width="128" height="163"/>
-        <element name="Tier" positionX="-65" positionY="180" width="128" height="118"/>
+        <element name="Tier" positionX="-65" positionY="180" width="128" height="103"/>
     </elements>
 </model>

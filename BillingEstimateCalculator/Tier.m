@@ -12,10 +12,9 @@
 
 @implementation Tier
 
-@dynamic name;
 @dynamic priceArtefactPerMonth;
-@dynamic artefactMin;
 @dynamic artefactMax;
 @dynamic bill;
+@dynamic lowerTier;
 
 @end
