@@ -1,18 +1,18 @@
 //
-//  DetailViewController.m
+//  BillDetailViewController.m
 //  BillingEstimateCalculator
 //
 //  Created by Christopher Winstanley on 15/05/2015.
 //  Copyright (c) 2015 Winstanley. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "BillDetailViewController.h"
 
-@interface DetailViewController ()
+@interface BillDetailViewController ()
 
 @end
 
-@implementation DetailViewController
+@implementation BillDetailViewController
 
 #pragma mark - Managing the detail item
 
@@ -28,7 +28,7 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
+        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"date"] description];
     }
 }
 

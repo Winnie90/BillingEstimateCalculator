@@ -11,7 +11,7 @@
 		8338E6D21B05F27B002EA426 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6D11B05F27B002EA426 /* AppDelegate.m */; };
 		8338E6D51B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6D31B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodeld */; };
 		8338E6D81B05F27B002EA426 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6D71B05F27B002EA426 /* MasterViewController.m */; };
-		8338E6DB1B05F27B002EA426 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6DA1B05F27B002EA426 /* DetailViewController.m */; };
+		8338E6DB1B05F27B002EA426 /* BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6DA1B05F27B002EA426 /* BillDetailViewController.m */; };
 		8338E6DE1B05F27B002EA426 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8338E6DC1B05F27B002EA426 /* Main.storyboard */; };
 		8338E6E01B05F27B002EA426 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8338E6DF1B05F27B002EA426 /* Images.xcassets */; };
 		8338E6E31B05F27B002EA426 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8338E6E11B05F27B002EA426 /* LaunchScreen.xib */; };
@@ -40,8 +40,8 @@
 		8338E6D41B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BillingEstimateCalculator.xcdatamodel; sourceTree = "<group>"; };
 		8338E6D61B05F27B002EA426 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		8338E6D71B05F27B002EA426 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		8338E6D91B05F27B002EA426 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		8338E6DA1B05F27B002EA426 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		8338E6D91B05F27B002EA426 /* BillDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillDetailViewController.h; sourceTree = "<group>"; };
+		8338E6DA1B05F27B002EA426 /* BillDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BillDetailViewController.m; sourceTree = "<group>"; };
 		8338E6DD1B05F27B002EA426 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8338E6DF1B05F27B002EA426 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8338E6E21B05F27B002EA426 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -100,8 +100,8 @@
 				8338E6D11B05F27B002EA426 /* AppDelegate.m */,
 				8338E6D61B05F27B002EA426 /* MasterViewController.h */,
 				8338E6D71B05F27B002EA426 /* MasterViewController.m */,
-				8338E6D91B05F27B002EA426 /* DetailViewController.h */,
-				8338E6DA1B05F27B002EA426 /* DetailViewController.m */,
+				8338E6D91B05F27B002EA426 /* BillDetailViewController.h */,
+				8338E6DA1B05F27B002EA426 /* BillDetailViewController.m */,
 				8338E6DC1B05F27B002EA426 /* Main.storyboard */,
 				8338E6DF1B05F27B002EA426 /* Images.xcassets */,
 				8338E6E11B05F27B002EA426 /* LaunchScreen.xib */,
@@ -250,7 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8338E6DB1B05F27B002EA426 /* DetailViewController.m in Sources */,
+				8338E6DB1B05F27B002EA426 /* BillDetailViewController.m in Sources */,
 				8338E70E1B05F7F0002EA426 /* Company.m in Sources */,
 				8338E7111B05F7F0002EA426 /* Bill.m in Sources */,
 				8338E6D81B05F27B002EA426 /* MasterViewController.m in Sources */,
