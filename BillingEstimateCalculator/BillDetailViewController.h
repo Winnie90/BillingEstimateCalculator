@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Bill+Management.h"
 
-@interface BillDetailViewController : UIViewController
+@interface BillDetailViewController : UIViewController <UITextViewDelegate>
 
 @property (strong, nonatomic) Bill *selectedBill;
 

@@ -50,6 +50,7 @@
     self.customerIdTextField.placeholder = self.selectedBill.company.customerId;
     self.companyNameTextField.placeholder = self.selectedBill.company.name;
     self.addressTextView.text = self.selectedBill.company.address;
+    self.addressTextView.delegate = self;
     self.emailTextField.placeholder = self.selectedBill.company.email;
     self.mobileTextField.placeholder = self.selectedBill.company.mobile;
     self.phoneTextField.placeholder = self.selectedBill.company.phone;
@@ -89,12 +90,15 @@
     [self updateBill];
 }
 
-- (void)updateBill{
-    [self updateBillDate];
-    [self saveBill];
+- (void)textViewDidChange:(UITextView *)textView{
+    if(textView == self.addressTextView){
+        self.selectedBill.company.address = self.addressTextView.text;
+        [self updateBill];
+    }
 }
 
-- (void) saveBill{
+- (void) updateBill{
+    [self updateBillDate];
     NSError* error;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Couldn't save: %@, %@", [error localizedDescription], [error userInfo]);
