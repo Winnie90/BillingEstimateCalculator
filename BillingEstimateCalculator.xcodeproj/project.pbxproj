@@ -23,6 +23,7 @@
 		8338E71E1B05FED7002EA426 /* Bill+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E71D1B05FED7002EA426 /* Bill+Management.m */; };
 		8338E7221B0628D2002EA426 /* Tier+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7211B0628D2002EA426 /* Tier+Management.m */; };
 		8338E7261B063A03002EA426 /* Company+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7251B063A03002EA426 /* Company+Management.m */; };
+		8338E7291B064F6E002EA426 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7281B064F6E002EA426 /* Utils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		8338E7231B0628F9002EA426 /* Tier+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tier+Management.h"; sourceTree = "<group>"; };
 		8338E7241B0639E9002EA426 /* Company+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Company+Management.h"; sourceTree = "<group>"; };
 		8338E7251B063A03002EA426 /* Company+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Company+Management.m"; sourceTree = "<group>"; };
+		8338E7271B064F4C002EA426 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		8338E7281B064F6E002EA426 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +184,8 @@
 			children = (
 				8338E7191B05FBEA002EA426 /* ExampleBillCreator.h */,
 				8338E71A1B05FBEA002EA426 /* ExampleBillCreator.m */,
+				8338E7271B064F4C002EA426 /* Utils.h */,
+				8338E7281B064F6E002EA426 /* Utils.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8338E7291B064F6E002EA426 /* Utils.m in Sources */,
 				8338E6DB1B05F27B002EA426 /* BillDetailViewController.m in Sources */,
 				8338E70E1B05F7F0002EA426 /* Company.m in Sources */,
 				8338E7261B063A03002EA426 /* Company+Management.m in Sources */,

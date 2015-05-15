@@ -14,7 +14,7 @@
 @interface Company : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * companyId;
+@property (nonatomic, retain) NSString * customerId;
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSString * mobile;

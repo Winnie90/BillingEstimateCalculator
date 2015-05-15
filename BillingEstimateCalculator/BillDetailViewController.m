@@ -7,6 +7,8 @@
 //
 
 #import "BillDetailViewController.h"
+#import "Company+Management.h"
+#import "Utils.h"
 
 @interface BillDetailViewController ()
 
@@ -16,9 +18,9 @@
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
+- (void)setSelectedBill:(id)newDetailItem {
+    if (_selectedBill != newDetailItem) {
+        _selectedBill = (Bill*)newDetailItem;
             
         // Update the view.
         [self configureView];
@@ -26,10 +28,29 @@
 }
 
 - (void)configureView {
-    // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"createdDate"] description];
+    if (self.selectedBill) {
+        [self setupBillDetails];
     }
+}
+
+- (void)setupBillDetails{
+    self.dateLabel.text = [[Utils alloc] formatDatetoDateString:self.selectedBill.lastUpdated];
+    self.billNameTextField.placeholder = self.selectedBill.name;
+    self.titleTextField.placeholder = self.selectedBill.title;
+    [self setupCustomerDetails];
+}
+
+-(void)setupCustomerDetails{
+    self.customerIdTextField.placeholder = self.selectedBill.company.customerId;
+    self.companyNameTextField.placeholder = self.selectedBill.company.name;
+    self.addressTextField.placeholder = self.selectedBill.company.address;
+    self.emailTextField.placeholder = self.selectedBill.company.email;
+    self.mobileTextField.placeholder = self.selectedBill.company.mobile;
+    self.phoneTextField.placeholder = self.selectedBill.company.phone;
+}
+
+-(void) updateBillDate{
+    //TODO:
 }
 
 - (void)viewDidLoad {

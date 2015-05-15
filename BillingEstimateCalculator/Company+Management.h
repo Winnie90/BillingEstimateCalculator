@@ -10,6 +10,6 @@
 
 @interface Company (Management)
 
-+ (Company*)companyWithName:(NSString *)name companyId:(NSString*)companyId address:(NSString*)address email:(NSString*)email mobile:(NSString*)mobile phone:(NSString*)phone inManagedObjectContext:(NSManagedObjectContext *)context;
++ (Company*)companyWithName:(NSString *)name customerId:(NSString*)customerId address:(NSString*)address email:(NSString*)email mobile:(NSString*)mobile phone:(NSString*)phone inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

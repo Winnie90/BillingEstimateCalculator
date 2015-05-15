@@ -13,7 +13,7 @@
 @implementation Company
 
 @dynamic name;
-@dynamic companyId;
+@dynamic customerId;
 @dynamic address;
 @dynamic email;
 @dynamic mobile;
