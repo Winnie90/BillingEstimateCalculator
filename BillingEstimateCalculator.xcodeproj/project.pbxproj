@@ -16,6 +16,9 @@
 		8338E6E01B05F27B002EA426 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8338E6DF1B05F27B002EA426 /* Images.xcassets */; };
 		8338E6E31B05F27B002EA426 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8338E6E11B05F27B002EA426 /* LaunchScreen.xib */; };
 		8338E6EF1B05F27B002EA426 /* BillingEstimateCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6EE1B05F27B002EA426 /* BillingEstimateCalculatorTests.m */; };
+		8338E70E1B05F7F0002EA426 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E70D1B05F7F0002EA426 /* Company.m */; };
+		8338E7111B05F7F0002EA426 /* Bill.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7101B05F7F0002EA426 /* Bill.m */; };
+		8338E7141B05F7F0002EA426 /* Tier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7131B05F7F0002EA426 /* Tier.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,12 @@
 		8338E6E81B05F27B002EA426 /* BillingEstimateCalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillingEstimateCalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8338E6ED1B05F27B002EA426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8338E6EE1B05F27B002EA426 /* BillingEstimateCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BillingEstimateCalculatorTests.m; sourceTree = "<group>"; };
+		8338E70C1B05F7F0002EA426 /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
+		8338E70D1B05F7F0002EA426 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
+		8338E70F1B05F7F0002EA426 /* Bill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bill.h; sourceTree = "<group>"; };
+		8338E7101B05F7F0002EA426 /* Bill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bill.m; sourceTree = "<group>"; };
+		8338E7121B05F7F0002EA426 /* Tier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tier.h; sourceTree = "<group>"; };
+		8338E7131B05F7F0002EA426 /* Tier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tier.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +95,7 @@
 		8338E6CB1B05F27B002EA426 /* BillingEstimateCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				8338E70B1B05F7C2002EA426 /* Model */,
 				8338E6D01B05F27B002EA426 /* AppDelegate.h */,
 				8338E6D11B05F27B002EA426 /* AppDelegate.m */,
 				8338E6D61B05F27B002EA426 /* MasterViewController.h */,
@@ -125,6 +135,19 @@
 				8338E6ED1B05F27B002EA426 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8338E70B1B05F7C2002EA426 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8338E7121B05F7F0002EA426 /* Tier.h */,
+				8338E7131B05F7F0002EA426 /* Tier.m */,
+				8338E70F1B05F7F0002EA426 /* Bill.h */,
+				8338E7101B05F7F0002EA426 /* Bill.m */,
+				8338E70C1B05F7F0002EA426 /* Company.h */,
+				8338E70D1B05F7F0002EA426 /* Company.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,8 +251,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8338E6DB1B05F27B002EA426 /* DetailViewController.m in Sources */,
+				8338E70E1B05F7F0002EA426 /* Company.m in Sources */,
+				8338E7111B05F7F0002EA426 /* Bill.m in Sources */,
 				8338E6D81B05F27B002EA426 /* MasterViewController.m in Sources */,
 				8338E6D51B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodeld in Sources */,
+				8338E7141B05F7F0002EA426 /* Tier.m in Sources */,
 				8338E6D21B05F27B002EA426 /* AppDelegate.m in Sources */,
 				8338E6CF1B05F27B002EA426 /* main.m in Sources */,
 			);
