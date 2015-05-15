@@ -40,7 +40,7 @@
 }
 
 - (void)insertNewObject:(id)sender {
-    [Bill billWithName:@"Example Bill" title:@"Example Bill Title" inManagedObjectContext:self.managedObjectContext];
+    [Bill billWithName:@"New Bill" title:@"New Bill Title" inManagedObjectContext:self.managedObjectContext];
     // Save the context.
     NSError *error = nil;
     if (![self.managedObjectContext  save:&error]) {
@@ -101,7 +101,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"date"] description];
+    cell.textLabel.text = [[object valueForKey:@"lastUpdated"] description];
 }
 
 #pragma mark - Fetched results controller
@@ -119,7 +119,7 @@
     [fetchRequest setEntity:entity];
     [fetchRequest setFetchBatchSize:20];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastUpdated" ascending:NO];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];

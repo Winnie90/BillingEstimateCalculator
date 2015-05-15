@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Bill" representedClassName="Bill" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="duplicates" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="estimatedArtefacts" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="versions" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -14,6 +15,7 @@
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="companyId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,8 +28,8 @@
         <relationship name="lowerTier" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tier" inverseName="lowerTier" inverseEntity="Tier" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Company" positionX="-63" positionY="-18" width="128" height="148"/>
-        <element name="Bill" positionX="214" positionY="6" width="128" height="163"/>
-        <element name="Tier" positionX="-65" positionY="180" width="128" height="103"/>
+        <element name="Bill" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="Company" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="Tier" positionX="0" positionY="0" width="128" height="105"/>
     </elements>
 </model>

@@ -17,6 +17,7 @@
 @dynamic address;
 @dynamic email;
 @dynamic mobile;
+@dynamic lastUpdated;
 @dynamic phone;
 @dynamic bills;
 

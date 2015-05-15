@@ -15,7 +15,8 @@
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSDate * createdDate;
+@property (nonatomic, retain) NSDate * lastUpdated;
 @property (nonatomic, retain) NSNumber * estimatedArtefacts;
 @property (nonatomic, retain) NSNumber * duplicates;
 @property (nonatomic, retain) NSNumber * versions;

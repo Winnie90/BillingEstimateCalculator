@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSString * mobile;
 @property (nonatomic, retain) NSString * phone;
 @property (nonatomic, retain) NSSet *bills;
+@property (nonatomic, retain) NSDate *lastUpdated;
 @end
 
 @interface Company (CoreDataGeneratedAccessors)

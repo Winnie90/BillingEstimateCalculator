@@ -15,7 +15,8 @@
 
 @dynamic name;
 @dynamic title;
-@dynamic date;
+@dynamic createdDate;
+@dynamic lastUpdated;
 @dynamic estimatedArtefacts;
 @dynamic duplicates;
 @dynamic versions;

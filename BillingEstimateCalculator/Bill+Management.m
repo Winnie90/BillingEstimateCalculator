@@ -8,6 +8,7 @@
 
 #import "Bill+Management.h"
 #import "Tier+Management.h"
+#import "Company+Management.h"
 
 @implementation Bill (Management)
 
@@ -17,15 +18,18 @@
     Bill* bill = (Bill*)[NSEntityDescription insertNewObjectForEntityForName:@"Bill" inManagedObjectContext:context];
     bill.name = name;
     bill.title = title;
-    bill.date = [NSDate date];
     bill.estimatedArtefacts = [[NSNumber alloc] initWithInt:0];
     bill.duplicates = [[NSNumber alloc] initWithFloat:0.0];
     bill.versions = [[NSNumber alloc] initWithFloat:0.0];
     [bill createStandardTiers:context];
+    [bill addCompany:context];
+    bill.createdDate = [NSDate date];
+    bill.lastUpdated = [NSDate date];
     return bill;
 }
 
--(void)createStandardTiers:(NSManagedObjectContext *)context{
+- (void)createStandardTiers:(NSManagedObjectContext *)context{
+    // create the three standard tiers
     Tier *tier1 = [Tier tierWithPriceArtefactPerMonth:[[NSNumber alloc] initWithFloat:1.00] artefactMax:[[NSNumber alloc] initWithInt:1000] inManagedObjectContext:context];
     Tier *tier2 = [Tier tierWithPriceArtefactPerMonth:[[NSNumber alloc] initWithFloat:0.70] artefactMax:[[NSNumber alloc] initWithInt:5000] inManagedObjectContext:context];
     tier2.lowerTier = tier1;
@@ -35,4 +39,25 @@
     [self addTiers:tiers];
 }
 
+- (void)addCompany:(NSManagedObjectContext *)context{
+    Company *company = [self retrieveLastUsedCompany:context];
+    if (company == nil) {
+        company = [Company companyWithName:@"Example Company" companyId:@"Example Company Id" address:@"88 Example Company Street, Example Company Way, Exampleton, EXA 1MP" email:@"example@example.com" mobile:@"012456789" phone:@"012456789" inManagedObjectContext:context];
+    }
+    [company addBillsObject:self];
+}
+
+- (Company*)retrieveLastUsedCompany:(NSManagedObjectContext *)context{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    fetchRequest.entity = [NSEntityDescription entityForName:NSStringFromClass([Company class]) inManagedObjectContext:context];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastUpdated" ascending:NO];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    [fetchRequest setFetchLimit:1];
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:fetchRequest error:&error];
+    if (result == nil || result.count < 1) {
+        return nil;
+    }
+    return (Company*)[result objectAtIndex:0];
+}
 @end

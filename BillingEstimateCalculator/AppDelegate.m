@@ -29,10 +29,18 @@
     MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if(![defaults boolForKey:@"hasLaunchedBefore"]){
+        [defaults setBool:YES forKey:@"hasLaunchedBefore"];
+        [self firstLoad];
+    }
+    return YES;
+}
+
+- (void)firstLoad{
     ExampleBillCreator *exampleBill = [[ExampleBillCreator alloc] init];
     exampleBill.managedObjectContext = self.managedObjectContext;
     [exampleBill createExampleBill];
-    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
