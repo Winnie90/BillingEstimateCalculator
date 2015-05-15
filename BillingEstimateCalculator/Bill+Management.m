@@ -60,4 +60,5 @@
     }
     return (Company*)[result objectAtIndex:0];
 }
+
 @end

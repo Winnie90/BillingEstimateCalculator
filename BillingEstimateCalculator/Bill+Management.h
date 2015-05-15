@@ -10,5 +10,6 @@
 @interface Bill (Management)
 
 + (Bill*)billWithName:(NSString *)name title:(NSString*)title inManagedObjectContext:(NSManagedObjectContext *)context;
+- (Bill*)retrieveFirstBill:(NSManagedObjectContext *)context;
 
 @end
