@@ -19,6 +19,8 @@
 		8338E70E1B05F7F0002EA426 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E70D1B05F7F0002EA426 /* Company.m */; };
 		8338E7111B05F7F0002EA426 /* Bill.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7101B05F7F0002EA426 /* Bill.m */; };
 		8338E7141B05F7F0002EA426 /* Tier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7131B05F7F0002EA426 /* Tier.m */; };
+		8338E71B1B05FBEA002EA426 /* ExampleBillCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E71A1B05FBEA002EA426 /* ExampleBillCreator.m */; };
+		8338E71E1B05FED7002EA426 /* Bill+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E71D1B05FED7002EA426 /* Bill+Management.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 		8338E7101B05F7F0002EA426 /* Bill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bill.m; sourceTree = "<group>"; };
 		8338E7121B05F7F0002EA426 /* Tier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tier.h; sourceTree = "<group>"; };
 		8338E7131B05F7F0002EA426 /* Tier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tier.m; sourceTree = "<group>"; };
+		8338E7191B05FBEA002EA426 /* ExampleBillCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleBillCreator.h; sourceTree = "<group>"; };
+		8338E71A1B05FBEA002EA426 /* ExampleBillCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleBillCreator.m; sourceTree = "<group>"; };
+		8338E71C1B05FED7002EA426 /* Bill+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bill+Management.h"; sourceTree = "<group>"; };
+		8338E71D1B05FED7002EA426 /* Bill+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Bill+Management.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,17 +101,13 @@
 		8338E6CB1B05F27B002EA426 /* BillingEstimateCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				8338E70B1B05F7C2002EA426 /* Model */,
 				8338E6D01B05F27B002EA426 /* AppDelegate.h */,
 				8338E6D11B05F27B002EA426 /* AppDelegate.m */,
-				8338E6D61B05F27B002EA426 /* MasterViewController.h */,
-				8338E6D71B05F27B002EA426 /* MasterViewController.m */,
-				8338E6D91B05F27B002EA426 /* BillDetailViewController.h */,
-				8338E6DA1B05F27B002EA426 /* BillDetailViewController.m */,
-				8338E6DC1B05F27B002EA426 /* Main.storyboard */,
-				8338E6DF1B05F27B002EA426 /* Images.xcassets */,
-				8338E6E11B05F27B002EA426 /* LaunchScreen.xib */,
-				8338E6D31B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodeld */,
+				8338E70B1B05F7C2002EA426 /* Model */,
+				8338E7151B05FB03002EA426 /* ViewControllers */,
+				8338E7161B05FB2F002EA426 /* Utils */,
+				8338E7171B05FB45002EA426 /* UI */,
+				8338E7181B05FB5F002EA426 /* Images */,
 				8338E6CC1B05F27B002EA426 /* Supporting Files */,
 			);
 			path = BillingEstimateCalculator;
@@ -140,14 +142,54 @@
 		8338E70B1B05F7C2002EA426 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8338E6D31B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodeld */,
 				8338E7121B05F7F0002EA426 /* Tier.h */,
 				8338E7131B05F7F0002EA426 /* Tier.m */,
 				8338E70F1B05F7F0002EA426 /* Bill.h */,
 				8338E7101B05F7F0002EA426 /* Bill.m */,
+				8338E71C1B05FED7002EA426 /* Bill+Management.h */,
+				8338E71D1B05FED7002EA426 /* Bill+Management.m */,
 				8338E70C1B05F7F0002EA426 /* Company.h */,
 				8338E70D1B05F7F0002EA426 /* Company.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		8338E7151B05FB03002EA426 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8338E6D61B05F27B002EA426 /* MasterViewController.h */,
+				8338E6D71B05F27B002EA426 /* MasterViewController.m */,
+				8338E6D91B05F27B002EA426 /* BillDetailViewController.h */,
+				8338E6DA1B05F27B002EA426 /* BillDetailViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8338E7161B05FB2F002EA426 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8338E7191B05FBEA002EA426 /* ExampleBillCreator.h */,
+				8338E71A1B05FBEA002EA426 /* ExampleBillCreator.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		8338E7171B05FB45002EA426 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				8338E6E11B05F27B002EA426 /* LaunchScreen.xib */,
+				8338E6DC1B05F27B002EA426 /* Main.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		8338E7181B05FB5F002EA426 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				8338E6DF1B05F27B002EA426 /* Images.xcassets */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,10 +295,12 @@
 				8338E6DB1B05F27B002EA426 /* BillDetailViewController.m in Sources */,
 				8338E70E1B05F7F0002EA426 /* Company.m in Sources */,
 				8338E7111B05F7F0002EA426 /* Bill.m in Sources */,
+				8338E71E1B05FED7002EA426 /* Bill+Management.m in Sources */,
 				8338E6D81B05F27B002EA426 /* MasterViewController.m in Sources */,
 				8338E6D51B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodeld in Sources */,
 				8338E7141B05F7F0002EA426 /* Tier.m in Sources */,
 				8338E6D21B05F27B002EA426 /* AppDelegate.m in Sources */,
+				8338E71B1B05FBEA002EA426 /* ExampleBillCreator.m in Sources */,
 				8338E6CF1B05F27B002EA426 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
