@@ -11,6 +11,6 @@
 @interface Utils : NSObject
 
 -(NSString*) formatDatetoDateString:(NSDate*)date;
-
+-(NSString*) formatDatetoDateTimeString:(NSDate*)date;
 @end
 

@@ -99,6 +99,7 @@
 
 - (void) updateBill{
     [self updateBillDate];
+    NSLog(@"company saved");
     NSError* error;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Couldn't save: %@, %@", [error localizedDescription], [error userInfo]);

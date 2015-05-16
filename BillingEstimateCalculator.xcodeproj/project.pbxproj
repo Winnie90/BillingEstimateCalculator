@@ -24,6 +24,7 @@
 		8338E7221B0628D2002EA426 /* Tier+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7211B0628D2002EA426 /* Tier+Management.m */; };
 		8338E7261B063A03002EA426 /* Company+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7251B063A03002EA426 /* Company+Management.m */; };
 		8338E7291B064F6E002EA426 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7281B064F6E002EA426 /* Utils.m */; };
+		83B46F361B06860300884297 /* BillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B46F351B06860300884297 /* BillTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		8338E7251B063A03002EA426 /* Company+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Company+Management.m"; sourceTree = "<group>"; };
 		8338E7271B064F4C002EA426 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		8338E7281B064F6E002EA426 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		83B46F341B06860300884297 /* BillTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableViewCell.h; sourceTree = "<group>"; };
+		83B46F351B06860300884297 /* BillTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,7 @@
 				8338E6D71B05F27B002EA426 /* MasterViewController.m */,
 				8338E6D91B05F27B002EA426 /* BillDetailViewController.h */,
 				8338E6DA1B05F27B002EA426 /* BillDetailViewController.m */,
+				83B46F331B0685C200884297 /* Cells */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -205,6 +209,15 @@
 				8338E6DF1B05F27B002EA426 /* Images.xcassets */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		83B46F331B0685C200884297 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				83B46F341B06860300884297 /* BillTableViewCell.h */,
+				83B46F351B06860300884297 /* BillTableViewCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83B46F361B06860300884297 /* BillTableViewCell.m in Sources */,
 				8338E7291B064F6E002EA426 /* Utils.m in Sources */,
 				8338E6DB1B05F27B002EA426 /* BillDetailViewController.m in Sources */,
 				8338E70E1B05F7F0002EA426 /* Company.m in Sources */,
@@ -516,6 +530,7 @@
 				8338E6F41B05F27B002EA426 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8338E6F51B05F27B002EA426 /* Build configuration list for PBXNativeTarget "BillingEstimateCalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +539,7 @@
 				8338E6F71B05F27B002EA426 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

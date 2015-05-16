@@ -40,10 +40,8 @@
 }
 
 - (void)addCompany:(NSManagedObjectContext *)context{
-    Company *company = [self retrieveLastUsedCompany:context];
-    if (company == nil) {
-        company = [Company companyWithName:@"Example Company" customerId:@"Example Company Id" address:@"88 Example Company Street, Example Company Way, Exampleton, EXA 1MP" email:@"example@example.com" mobile:@"012456789" phone:@"012456789" inManagedObjectContext:context];
-    }
+    Company *company = [Company companyWithName:@"Enter the company name" customerId:@"Enter the company id" address:@"Enter the company address" email:@"Enter the company email" mobile:@"Enter the company mobile" phone:@"Enter the company phone" inManagedObjectContext:context];
+    
     [company addBillsObject:self];
 }
 

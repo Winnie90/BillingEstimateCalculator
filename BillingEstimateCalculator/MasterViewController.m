@@ -9,6 +9,9 @@
 #import "MasterViewController.h"
 #import "BillDetailViewController.h"
 #import "Bill+Management.h"
+#import "Company+Management.h"
+#import "BillTableViewCell.h"
+#import "Utils.h"
 
 @interface MasterViewController ()
 
@@ -76,7 +79,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    BillTableViewCell *cell = (BillTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"BillCell" forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -101,9 +104,12 @@
     }
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"lastUpdated"] description];
+- (void)configureCell:(BillTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    Bill *bill = (Bill*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.nameLabel.text = bill.name;
+    cell.titleLabel.text = bill.title;
+    cell.companyLabel.text = bill.company.name;
+    cell.lastUpdatedLabel.text = [[Utils alloc] formatDatetoDateTimeString:bill.lastUpdated];
 }
 
 #pragma mark - Fetched results controller
@@ -177,7 +183,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:(BillTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:

@@ -15,4 +15,10 @@
     format.dateFormat = @"dd-MM-yyyy";
     return [format stringFromDate:date];
 }
+
+-(NSString*) formatDatetoDateTimeString:(NSDate*)date{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.dateFormat = @"HH:mm:ss dd-MM-yyyy";
+    return [format stringFromDate:date];
+}
 @end
