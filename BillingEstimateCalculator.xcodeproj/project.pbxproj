@@ -24,6 +24,7 @@
 		8338E7221B0628D2002EA426 /* Tier+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7211B0628D2002EA426 /* Tier+Management.m */; };
 		8338E7261B063A03002EA426 /* Company+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7251B063A03002EA426 /* Company+Management.m */; };
 		8338E7291B064F6E002EA426 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7281B064F6E002EA426 /* Utils.m */; };
+		837189771B07EAD000BF9A2C /* TierTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837189761B07EAD000BF9A2C /* TierTableViewCell.m */; };
 		83B46F361B06860300884297 /* BillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B46F351B06860300884297 /* BillTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,8 @@
 		8338E7251B063A03002EA426 /* Company+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Company+Management.m"; sourceTree = "<group>"; };
 		8338E7271B064F4C002EA426 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		8338E7281B064F6E002EA426 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		837189751B07EAD000BF9A2C /* TierTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TierTableViewCell.h; sourceTree = "<group>"; };
+		837189761B07EAD000BF9A2C /* TierTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TierTableViewCell.m; sourceTree = "<group>"; };
 		83B46F341B06860300884297 /* BillTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableViewCell.h; sourceTree = "<group>"; };
 		83B46F351B06860300884297 /* BillTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +219,8 @@
 			children = (
 				83B46F341B06860300884297 /* BillTableViewCell.h */,
 				83B46F351B06860300884297 /* BillTableViewCell.m */,
+				837189751B07EAD000BF9A2C /* TierTableViewCell.h */,
+				837189761B07EAD000BF9A2C /* TierTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				837189771B07EAD000BF9A2C /* TierTableViewCell.m in Sources */,
 				83B46F361B06860300884297 /* BillTableViewCell.m in Sources */,
 				8338E7291B064F6E002EA426 /* Utils.m in Sources */,
 				8338E6DB1B05F27B002EA426 /* BillDetailViewController.m in Sources */,
