@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Bill+Management.h"
 
-@interface BillDetailViewController : UIViewController <UITextViewDelegate>
+@interface BillDetailViewController : UIViewController <UITextViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) Bill *selectedBill;
 
@@ -24,6 +24,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+
+@property (weak, nonatomic) IBOutlet UITableView *tierTableView;
+@property (weak, nonatomic) IBOutlet UITextField *estimatedArtefactsTextField;
+@property (weak, nonatomic) IBOutlet UITextField *duplicatesTextField;
+@property (weak, nonatomic) IBOutlet UITextField *versionsTextField;
+@property (weak, nonatomic) IBOutlet UITextField *totalUnitsLabel;
+@property (weak, nonatomic) IBOutlet UITextField *removedArtefactsLabel;
+@property (weak, nonatomic) IBOutlet UITextField *foldedVersionsLabel;
 
 - (IBAction)didUpdateBillName:(id)sender;
 - (IBAction)didUpdateId:(id)sender;
