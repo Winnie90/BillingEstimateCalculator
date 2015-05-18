@@ -11,5 +11,4 @@
 @interface Tier (Management)
 
 + (Tier*)tierWithPriceArtefactPerMonth:(NSNumber*)priceArtefactPerMonth artefactMax:(NSNumber*)artefactMax inManagedObjectContext:(NSManagedObjectContext *)context;
-
 @end

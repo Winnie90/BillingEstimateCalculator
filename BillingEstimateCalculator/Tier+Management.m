@@ -14,7 +14,6 @@
     Tier *tier = (Tier*)[NSEntityDescription insertNewObjectForEntityForName:@"Tier" inManagedObjectContext:context];
     tier.priceArtefactPerMonth = priceArtefactPerMonth;
     tier.artefactMax = artefactMax;
-    tier.lowerTier = nil;
     return tier;
 }
 

@@ -18,11 +18,13 @@
     Bill* bill = (Bill*)[NSEntityDescription insertNewObjectForEntityForName:@"Bill" inManagedObjectContext:context];
     bill.name = name;
     bill.title = title;
-    bill.estimatedArtefacts = [[NSNumber alloc] initWithInt:0];
-    bill.duplicates = [[NSNumber alloc] initWithFloat:0.0];
+    bill.estimatedArtefacts = [[NSNumber alloc] initWithInt:15000];
+    bill.duplicates = [[NSNumber alloc] initWithFloat:0.15];
     bill.versions = [[NSNumber alloc] initWithFloat:0.0];
     [bill createStandardTiers:context];
     [bill addCompany:context];
+    
+    //update times
     bill.createdDate = [NSDate date];
     bill.lastUpdated = [NSDate date];
     return bill;
@@ -37,6 +39,18 @@
     tier3.lowerTier = tier2;
     NSSet *tiers = [NSSet setWithObjects: tier1, tier2, tier3, nil];
     [self addTiers:tiers];
+}
+
+- (int)removedArtefacts{
+   return (int)([self.estimatedArtefacts floatValue] * [self.duplicates floatValue]);
+}
+
+- (int)foldedInVersions{
+    return (int)(([self.estimatedArtefacts floatValue] - [self removedArtefacts]) * [self.versions floatValue]);
+}
+
+- (int)totalUnits{
+    return [self.estimatedArtefacts intValue] - [self removedArtefacts] - [self foldedInVersions];
 }
 
 - (void)addCompany:(NSManagedObjectContext *)context{

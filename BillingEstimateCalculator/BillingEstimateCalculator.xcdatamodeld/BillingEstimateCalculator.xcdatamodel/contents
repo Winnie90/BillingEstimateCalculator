@@ -25,11 +25,12 @@
         <attribute name="artefactMax" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="priceArtefactPerMonth" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="bill" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bill" inverseName="tiers" inverseEntity="Bill" syncable="YES"/>
-        <relationship name="lowerTier" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tier" inverseName="lowerTier" inverseEntity="Tier" syncable="YES"/>
+        <relationship name="higherTier" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tier" inverseName="lowerTier" inverseEntity="Tier" syncable="YES"/>
+        <relationship name="lowerTier" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tier" inverseName="higherTier" inverseEntity="Tier" syncable="YES"/>
     </entity>
     <elements>
         <element name="Bill" positionX="0" positionY="0" width="128" height="180"/>
         <element name="Company" positionX="0" positionY="0" width="128" height="165"/>
-        <element name="Tier" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Tier" positionX="0" positionY="0" width="128" height="120"/>
     </elements>
 </model>

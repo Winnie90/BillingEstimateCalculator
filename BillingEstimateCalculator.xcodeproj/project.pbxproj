@@ -18,13 +18,13 @@
 		8338E6EF1B05F27B002EA426 /* BillingEstimateCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6EE1B05F27B002EA426 /* BillingEstimateCalculatorTests.m */; };
 		8338E70E1B05F7F0002EA426 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E70D1B05F7F0002EA426 /* Company.m */; };
 		8338E7111B05F7F0002EA426 /* Bill.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7101B05F7F0002EA426 /* Bill.m */; };
-		8338E7141B05F7F0002EA426 /* Tier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7131B05F7F0002EA426 /* Tier.m */; };
 		8338E71B1B05FBEA002EA426 /* ExampleBillCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E71A1B05FBEA002EA426 /* ExampleBillCreator.m */; };
 		8338E71E1B05FED7002EA426 /* Bill+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E71D1B05FED7002EA426 /* Bill+Management.m */; };
 		8338E7221B0628D2002EA426 /* Tier+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7211B0628D2002EA426 /* Tier+Management.m */; };
 		8338E7261B063A03002EA426 /* Company+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7251B063A03002EA426 /* Company+Management.m */; };
 		8338E7291B064F6E002EA426 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7281B064F6E002EA426 /* Utils.m */; };
 		837189771B07EAD000BF9A2C /* TierTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837189761B07EAD000BF9A2C /* TierTableViewCell.m */; };
+		8371897D1B09DBB400BF9A2C /* Tier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8371897C1B09DBB400BF9A2C /* Tier.m */; };
 		83B46F361B06860300884297 /* BillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B46F351B06860300884297 /* BillTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -59,8 +59,6 @@
 		8338E70D1B05F7F0002EA426 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
 		8338E70F1B05F7F0002EA426 /* Bill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bill.h; sourceTree = "<group>"; };
 		8338E7101B05F7F0002EA426 /* Bill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bill.m; sourceTree = "<group>"; };
-		8338E7121B05F7F0002EA426 /* Tier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tier.h; sourceTree = "<group>"; };
-		8338E7131B05F7F0002EA426 /* Tier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tier.m; sourceTree = "<group>"; };
 		8338E7191B05FBEA002EA426 /* ExampleBillCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleBillCreator.h; sourceTree = "<group>"; };
 		8338E71A1B05FBEA002EA426 /* ExampleBillCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleBillCreator.m; sourceTree = "<group>"; };
 		8338E71C1B05FED7002EA426 /* Bill+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bill+Management.h"; sourceTree = "<group>"; };
@@ -73,6 +71,8 @@
 		8338E7281B064F6E002EA426 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		837189751B07EAD000BF9A2C /* TierTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TierTableViewCell.h; sourceTree = "<group>"; };
 		837189761B07EAD000BF9A2C /* TierTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TierTableViewCell.m; sourceTree = "<group>"; };
+		8371897B1B09DBB400BF9A2C /* Tier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tier.h; sourceTree = "<group>"; };
+		8371897C1B09DBB400BF9A2C /* Tier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tier.m; sourceTree = "<group>"; };
 		83B46F341B06860300884297 /* BillTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableViewCell.h; sourceTree = "<group>"; };
 		83B46F351B06860300884297 /* BillTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,8 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				8338E6D31B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodeld */,
-				8338E7121B05F7F0002EA426 /* Tier.h */,
-				8338E7131B05F7F0002EA426 /* Tier.m */,
+				8371897B1B09DBB400BF9A2C /* Tier.h */,
+				8371897C1B09DBB400BF9A2C /* Tier.m */,
 				8338E7231B0628F9002EA426 /* Tier+Management.h */,
 				8338E7211B0628D2002EA426 /* Tier+Management.m */,
 				8338E70F1B05F7F0002EA426 /* Bill.h */,
@@ -330,13 +330,13 @@
 				8338E7291B064F6E002EA426 /* Utils.m in Sources */,
 				8338E6DB1B05F27B002EA426 /* BillDetailViewController.m in Sources */,
 				8338E70E1B05F7F0002EA426 /* Company.m in Sources */,
+				8371897D1B09DBB400BF9A2C /* Tier.m in Sources */,
 				8338E7261B063A03002EA426 /* Company+Management.m in Sources */,
 				8338E7111B05F7F0002EA426 /* Bill.m in Sources */,
 				8338E71E1B05FED7002EA426 /* Bill+Management.m in Sources */,
 				8338E6D81B05F27B002EA426 /* MasterViewController.m in Sources */,
 				8338E7221B0628D2002EA426 /* Tier+Management.m in Sources */,
 				8338E6D51B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodeld in Sources */,
-				8338E7141B05F7F0002EA426 /* Tier.m in Sources */,
 				8338E6D21B05F27B002EA426 /* AppDelegate.m in Sources */,
 				8338E71B1B05FBEA002EA426 /* ExampleBillCreator.m in Sources */,
 				8338E6CF1B05F27B002EA426 /* main.m in Sources */,

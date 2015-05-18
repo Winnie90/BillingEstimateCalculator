@@ -10,5 +10,7 @@
 @interface Bill (Management)
 
 + (Bill*)billWithName:(NSString *)name title:(NSString*)title inManagedObjectContext:(NSManagedObjectContext *)context;
-
+- (int)removedArtefacts;
+- (int)foldedInVersions;
+- (int)totalUnits;
 @end

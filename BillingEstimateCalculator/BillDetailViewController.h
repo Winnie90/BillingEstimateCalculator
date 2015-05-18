@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Bill+Management.h"
 
-@interface BillDetailViewController : UIViewController <UITextViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface BillDetailViewController : UIViewController <UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) Bill *selectedBill;
-
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic) NSInteger *numberOfSections;
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextField *customerIdTextField;
@@ -25,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 
-@property (weak, nonatomic) IBOutlet UITableView *tierTableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *estimatedArtefactsTextField;
 @property (weak, nonatomic) IBOutlet UITextField *duplicatesTextField;
 @property (weak, nonatomic) IBOutlet UITextField *versionsTextField;
