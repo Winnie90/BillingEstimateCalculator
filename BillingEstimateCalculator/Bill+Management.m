@@ -59,9 +59,9 @@
     [company addBillsObject:self];
 }
 
-- (Company*)retrieveLastUsedCompany:(NSManagedObjectContext *)context{
+- (Bill*)retrieveLastUsedBill:(NSManagedObjectContext *)context{
     NSFetchRequest *fetchRequest = [NSFetchRequest new];
-    fetchRequest.entity = [NSEntityDescription entityForName:NSStringFromClass([Company class]) inManagedObjectContext:context];
+    fetchRequest.entity = [NSEntityDescription entityForName:NSStringFromClass([Bill class]) inManagedObjectContext:context];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastUpdated" ascending:NO];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     [fetchRequest setFetchLimit:1];
@@ -70,7 +70,8 @@
     if (result == nil || result.count < 1) {
         return nil;
     }
-    return (Company*)[result objectAtIndex:0];
+    return (Bill*)[result objectAtIndex:0];
 }
+
 
 @end

@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"view did load");
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
@@ -36,10 +37,6 @@
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (BillDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     self.detailViewController.managedObjectContext = self.managedObjectContext;
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    NSLog(@"viewDidLoad selectedRow %ld", (long)indexPath.row);
-    self.detailViewController.selectedBill = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,6 +62,7 @@
         NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         BillDetailViewController *controller = (BillDetailViewController *)[[segue destinationViewController] topViewController];
         [controller setManagedObjectContext:self.managedObjectContext];
+        //NSLog(@"controller %@", controller)
         [controller setSelectedBill:(Bill*)object];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;

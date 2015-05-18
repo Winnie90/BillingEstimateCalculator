@@ -18,20 +18,27 @@
 
 @implementation BillDetailViewController
 
+@synthesize billNameTextField = _billNameTextField;
+
 #pragma mark - Managing the detail item
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    if(!self.selectedBill){
+        [self setSelectedBill:[[Bill alloc] retrieveLastUsedBill:self.managedObjectContext]];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     [self configureView];
 }
 
 - (void)setSelectedBill:(id)newDetailItem {
+    
     if (_selectedBill != newDetailItem) {
         _selectedBill = (Bill*)newDetailItem;
-            
-        // Update the view.
-        [self configureView];
     }
 }
 
@@ -39,7 +46,11 @@
 
 - (void)configureView {
     if (self.selectedBill) {
+        
+        NSLog(@"selected bill %@", _selectedBill.duplicates);
         [self setupBillDetails];
+        [self setupCustomerDetails];
+        [self updateCalculations];
     }
 }
 
@@ -47,18 +58,15 @@
     self.dateLabel.text = [[Utils alloc] formatDatetoDateString:self.selectedBill.lastUpdated];
     self.billNameTextField.placeholder = self.selectedBill.name;
     self.titleTextField.placeholder = self.selectedBill.title;
-    self.estimatedArtefactsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", [self.selectedBill.estimatedArtefacts intValue]];
-    self.duplicatesTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([self.selectedBill.duplicates floatValue]*100)];
-    self.versionsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([self.selectedBill.versions floatValue]*100)];
-    [self setupCustomerDetails];
-    [self updateCalculations];
+    self.estimatedArtefactsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", [_selectedBill.estimatedArtefacts intValue]];
+    self.duplicatesTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([_selectedBill.duplicates floatValue]*100)];
+    self.versionsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([_selectedBill.versions floatValue]*100)];
 }
 
 -(void)setupCustomerDetails{
     self.customerIdTextField.placeholder = self.selectedBill.company.customerId;
     self.companyNameTextField.placeholder = self.selectedBill.company.name;
     self.addressTextView.text = self.selectedBill.company.address;
-    self.addressTextView.delegate = self;
     self.emailTextField.placeholder = self.selectedBill.company.email;
     self.mobileTextField.placeholder = self.selectedBill.company.mobile;
     self.phoneTextField.placeholder = self.selectedBill.company.phone;

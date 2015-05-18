@@ -22,4 +22,17 @@
     return company;
 }
 
+- (Company*)retrieveLastUsedCompany:(NSManagedObjectContext *)context{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    fetchRequest.entity = [NSEntityDescription entityForName:NSStringFromClass([Company class]) inManagedObjectContext:context];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastUpdated" ascending:NO];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    [fetchRequest setFetchLimit:1];
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:fetchRequest error:&error];
+    if (result == nil || result.count < 1) {
+        return nil;
+    }
+    return (Company*)[result objectAtIndex:0];
+}
 @end

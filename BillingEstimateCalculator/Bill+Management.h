@@ -13,4 +13,5 @@
 - (int)removedArtefacts;
 - (int)foldedInVersions;
 - (int)totalUnits;
+- (Bill*)retrieveLastUsedBill:(NSManagedObjectContext *)context;
 @end
