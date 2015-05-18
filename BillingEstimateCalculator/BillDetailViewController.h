@@ -34,6 +34,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *removedArtefactsLabel;
 @property (weak, nonatomic) IBOutlet UITextField *foldedVersionsLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *pricePerMonthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *averagePricePerDrawingPerMonthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pricePerYearLabel;
+
 - (IBAction)didUpdateBillName:(id)sender;
 - (IBAction)didUpdateId:(id)sender;
 - (IBAction)didUpdateCompanyName:(id)sender;

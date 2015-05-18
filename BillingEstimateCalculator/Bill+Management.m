@@ -53,6 +53,26 @@
     return [self.estimatedArtefacts intValue] - [self removedArtefacts] - [self foldedInVersions];
 }
 
+- (float)pricePerMonth{
+    float totalPricePerMonth = 0.0;
+    for (Tier *tier in self.tiers) {
+        totalPricePerMonth += tier.priceTierPerMonth;
+    }
+    return totalPricePerMonth;
+}
+
+- (float)averagePricePerDrawingPerMonth{
+    if (self.totalUnits > 0) {
+        return self.pricePerMonth/self.totalUnits;
+    } else {
+        return 0.0;
+    }
+}
+
+- (float)pricePerYear{
+    return self.pricePerMonth * 12;
+}
+
 - (void)addCompany:(NSManagedObjectContext *)context{
     Company *company = [Company companyWithName:@"Enter the company name" customerId:@"Enter the company id" address:@"Enter the company address" email:@"Enter the company email" mobile:@"Enter the company mobile" phone:@"Enter the company phone" inManagedObjectContext:context];
     

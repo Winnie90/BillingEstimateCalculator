@@ -28,15 +28,10 @@
     if(!self.selectedBill){
         [self setSelectedBill:[[Bill alloc] retrieveLastUsedBill:self.managedObjectContext]];
     }
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
     [self configureView];
 }
 
 - (void)setSelectedBill:(id)newDetailItem {
-    
     if (_selectedBill != newDetailItem) {
         _selectedBill = (Bill*)newDetailItem;
     }
@@ -46,8 +41,6 @@
 
 - (void)configureView {
     if (self.selectedBill) {
-        
-        NSLog(@"selected bill %@", _selectedBill.duplicates);
         [self setupBillDetails];
         [self setupCustomerDetails];
         [self updateCalculations];
@@ -74,10 +67,15 @@
 
 #pragma mark - Update Bill View
 
+// Kept calculations in the model to make view code cleaner,
+// Could move into the view or cache results to reduce running calculations multiple times
 - (void)updateCalculations{
     self.removedArtefactsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill removedArtefacts]];
     self.foldedVersionsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill foldedInVersions]];
     self.totalUnitsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill totalUnits]];
+    self.pricePerMonthLabel.text = [[NSString alloc] initWithFormat: @"$%.02f", [self.selectedBill pricePerMonth]];
+    self.averagePricePerDrawingPerMonthLabel.text = [[NSString alloc] initWithFormat: @"$%.02f", [self.selectedBill averagePricePerDrawingPerMonth]];
+    self.pricePerYearLabel.text = [[NSString alloc] initWithFormat: @"$%.02f", [self.selectedBill pricePerYear]];
 }
 
 -(void) updateBillDate{
@@ -88,7 +86,6 @@
 
 - (void) updateBill{
     [self updateBillDate];
-    NSLog(@"company saved");
     NSError* error;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Couldn't save: %@, %@", [error localizedDescription], [error userInfo]);

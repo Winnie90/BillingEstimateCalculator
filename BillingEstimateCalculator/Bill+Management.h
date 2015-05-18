@@ -10,8 +10,11 @@
 @interface Bill (Management)
 
 + (Bill*)billWithName:(NSString *)name title:(NSString*)title inManagedObjectContext:(NSManagedObjectContext *)context;
+- (Bill*)retrieveLastUsedBill:(NSManagedObjectContext *)context;
 - (int)removedArtefacts;
 - (int)foldedInVersions;
 - (int)totalUnits;
-- (Bill*)retrieveLastUsedBill:(NSManagedObjectContext *)context;
+- (float)pricePerMonth;
+- (float)averagePricePerDrawingPerMonth;
+- (float)pricePerYear;
 @end
