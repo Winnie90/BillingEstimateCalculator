@@ -180,13 +180,13 @@
     cell.artefactMaxTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", tier.artefactMax];
     
     //calculate in tier model
-    cell.artefactRangeLabel.text = [[NSString alloc] initWithFormat:@"%d", [tier.artefactMax intValue] - [tier.lowerTier.artefactMax intValue]];
+    cell.artefactRangeLabel.text = [[NSString alloc] initWithFormat:@"%d", tier.range];
     
     //calculate num in tier model
-    //cell.clientArtefactNumLabel.text = tier.clientArtefactNum;
+    cell.clientArtefactNumLabel.text = [[NSString alloc] initWithFormat:@"%d", tier.clientArtefactNum];
     
     //calculate num in tier model
-    //cell.priceTierPerMonthLabel.text = tier.priceTierPerMonth;
+    cell.priceTierPerMonthLabel.text = [[NSString alloc] initWithFormat:@"%.02f", tier.priceTierPerMonth];
 }
 
 

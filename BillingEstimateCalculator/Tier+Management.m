@@ -7,6 +7,7 @@
 //
 
 #import "Tier+Management.h"
+#import "Bill+Management.h"
 
 @implementation Tier (Management)
 
@@ -17,4 +18,30 @@
     return tier;
 }
 
+- (int)clientArtefactNum{
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"artefactMax" ascending:YES];
+    NSArray *sortedTiers = [self.bill.tiers sortedArrayUsingDescriptors:[NSArray arrayWithObject:nameDescriptor]];
+    int artefactsLeft = self.bill.totalUnits;
+    for(Tier *tier in sortedTiers){
+        if (artefactsLeft > 0) {
+            artefactsLeft -= tier.range;
+            if (tier == self) {
+                if(artefactsLeft > 0){
+                    return tier.range;
+                } else {
+                    return tier.range + artefactsLeft;
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+- (int)range{
+    return [self.artefactMax intValue] - [self.lowerTier.artefactMax intValue];
+}
+
+- (float)priceTierPerMonth{
+    return self.clientArtefactNum * [self.priceArtefactPerMonth floatValue];
+}
 @end

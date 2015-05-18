@@ -1200,7 +1200,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price / Mth" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXp-IZ-Fgg">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avg / Price / Drawing / Mth" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXp-IZ-Fgg">
                                 <rect key="frame" x="0.0" y="489" width="503" height="18"/>
                                 <color key="backgroundColor" red="0.69803921570000005" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1412,10 +1412,10 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ety-vV-iVB">
-                                                    <rect key="frame" x="496" y="8" width="34" height="14"/>
+                                                    <rect key="frame" x="496" y="8" width="50" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Btz-X4-VX9"/>
-                                                        <constraint firstAttribute="width" constant="34" id="C3N-db-USu"/>
+                                                        <constraint firstAttribute="width" constant="50" id="C3N-db-USu"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="DWk-fw-E47"/>
                                                         <constraint firstAttribute="width" constant="20" id="EFg-LJ-O6x"/>
                                                         <constraint firstAttribute="width" constant="109" id="IxS-hO-OhT"/>
@@ -1517,7 +1517,7 @@
                                                 <constraint firstItem="gsV-8C-LWd" firstAttribute="leading" secondItem="MA4-Xu-NLc" secondAttribute="trailing" constant="15" id="KT9-Vk-2uW"/>
                                                 <constraint firstItem="ety-vV-iVB" firstAttribute="leading" secondItem="bSS-Y6-1N5" secondAttribute="trailing" constant="69" id="N6g-SX-mWJ"/>
                                                 <constraint firstItem="AH6-oe-gXW" firstAttribute="baseline" secondItem="fO3-5I-Hf7" secondAttribute="baseline" id="NQn-Ls-Z2Z"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="ety-vV-iVB" secondAttribute="trailing" constant="62" id="O3g-QZ-wZl"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ety-vV-iVB" secondAttribute="trailing" constant="46" id="O3g-QZ-wZl"/>
                                                 <constraint firstItem="AH6-oe-gXW" firstAttribute="baseline" secondItem="gsV-8C-LWd" secondAttribute="baseline" id="PAQ-RO-iRp"/>
                                                 <constraint firstItem="MA4-Xu-NLc" firstAttribute="leading" secondItem="fO3-5I-Hf7" secondAttribute="trailing" constant="8" id="PmD-jE-8ih"/>
                                                 <constraint firstItem="lyK-3v-uhJ" firstAttribute="leading" secondItem="AH6-oe-gXW" secondAttribute="trailing" constant="35" id="Qns-ms-Bdb"/>
@@ -1568,7 +1568,7 @@
                                     <outlet property="delegate" destination="JEX-9P-axG" id="tqX-0N-XaK"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price / Mth" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0T-OM-aYf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price / PA" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0T-OM-aYf">
                                 <rect key="frame" x="0.0" y="506" width="503" height="18"/>
                                 <color key="backgroundColor" red="0.69803921570000005" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
