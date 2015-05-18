@@ -20,7 +20,7 @@
     bill.title = title;
     bill.estimatedArtefacts = [[NSNumber alloc] initWithInt:15000];
     bill.duplicates = [[NSNumber alloc] initWithFloat:0.15];
-    bill.versions = [[NSNumber alloc] initWithFloat:0.0];
+    bill.versions = [[NSNumber alloc] initWithFloat:0.1];
     [bill createStandardTiers:context];
     [bill addCompany:context];
     

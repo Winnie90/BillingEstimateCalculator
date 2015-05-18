@@ -47,8 +47,11 @@
     self.dateLabel.text = [[Utils alloc] formatDatetoDateString:self.selectedBill.lastUpdated];
     self.billNameTextField.placeholder = self.selectedBill.name;
     self.titleTextField.placeholder = self.selectedBill.title;
+    self.estimatedArtefactsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", [self.selectedBill.estimatedArtefacts intValue]];
+    self.duplicatesTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([self.selectedBill.duplicates floatValue]*100)];
+    self.versionsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([self.selectedBill.versions floatValue]*100)];
     [self setupCustomerDetails];
-    [self retrieveBillCalculations];
+    [self updateCalculations];
 }
 
 -(void)setupCustomerDetails{
@@ -63,15 +66,17 @@
 
 #pragma mark - Update Bill View
 
-- (void)retrieveBillCalculations{
+- (void)updateCalculations{
     self.removedArtefactsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill removedArtefacts]];
+    self.foldedVersionsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill foldedInVersions]];
+    self.totalUnitsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill totalUnits]];
 }
-
-#pragma mark - Save Bill
 
 -(void) updateBillDate{
     self.selectedBill.lastUpdated = [NSDate date];
 }
+
+#pragma mark - Save Bill
 
 - (void) updateBill{
     [self updateBillDate];

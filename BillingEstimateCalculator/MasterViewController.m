@@ -36,6 +36,10 @@
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (BillDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     self.detailViewController.managedObjectContext = self.managedObjectContext;
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    NSLog(@"viewDidLoad selectedRow %ld", (long)indexPath.row);
+    self.detailViewController.selectedBill = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 }
 
 - (void)didReceiveMemoryWarning {
