@@ -1565,6 +1565,9 @@
                                         <exclude reference="sSd-9K-hyM"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="insertNewObject:" destination="JEX-9P-axG" eventType="touchUpInside" id="1Cc-9C-NpU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

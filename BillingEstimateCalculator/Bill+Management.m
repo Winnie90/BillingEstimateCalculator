@@ -7,7 +7,7 @@
 //
 
 #import "Bill+Management.h"
-#import "Tier+Management.h"
+
 #import "Company+Management.h"
 
 @implementation Bill (Management)
@@ -39,6 +39,16 @@
     tier3.lowerTier = tier2;
     NSSet *tiers = [NSSet setWithObjects: tier1, tier2, tier3, nil];
     [self addTiers:tiers];
+}
+
+- (Tier*)getTierWithHighestArtefactMax{
+    NSArray *sortedTiers = [self orderTiersByArtefactMax];
+    return [sortedTiers lastObject];
+}
+
+- (NSArray*)orderTiersByArtefactMax{
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"artefactMax" ascending:YES];
+    return [self.tiers sortedArrayUsingDescriptors:[NSArray arrayWithObject:nameDescriptor]];
 }
 
 - (int)removedArtefacts{

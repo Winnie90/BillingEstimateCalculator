@@ -84,8 +84,6 @@
     self.selectedBill.lastUpdated = [NSDate date];
 }
 
-#pragma mark - Save Bill
-
 - (void) updateBill{
     [self updateBillDate];
     NSError* error;
@@ -142,6 +140,15 @@
     [self updateCalculations];
 }
 
+- (void)textViewDidChange:(UITextView *)textView{
+    if(textView == self.addressTextView){
+        self.selectedBill.company.address = self.addressTextView.text;
+        [self updateBill];
+    }
+}
+
+#pragma mark - Table View Actions
+
 - (IBAction)didSelectEditTiersButton:(id)sender {
     if (self.tableView.editing) {
         [self.editTiersButton setTitle:@"Edit Tiers" forState:UIControlStateNormal];
@@ -152,11 +159,16 @@
     }
 }
 
-- (void)textViewDidChange:(UITextView *)textView{
-    if(textView == self.addressTextView){
-        self.selectedBill.company.address = self.addressTextView.text;
-        [self updateBill];
+- (void)insertNewObject:(id)sender {
+    // Create a new tier object and add it to the selected bill
+    [self.selectedBill addTiersObject:[Tier tierWithLowerTier:[self.selectedBill getTierWithHighestArtefactMax] inManagedObjectContext:self.managedObjectContext]];
+    // Save the context.
+    NSError *error = nil;
+    if (![self.managedObjectContext  save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
     }
+    [self updateCalculations];
 }
 
 #pragma mark - Table View
@@ -191,6 +203,7 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
+        [self updateCalculations];
     }
 }
 

@@ -51,7 +51,6 @@
 - (IBAction)didUpdateVersions:(id)sender;
 
 - (IBAction)didSelectEditTiersButton:(id)sender;
-
-
+- (IBAction)insertNewObject:(id)sender;
 @end
 

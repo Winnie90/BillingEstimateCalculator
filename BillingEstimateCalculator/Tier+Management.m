@@ -18,9 +18,16 @@
     return tier;
 }
 
++ (Tier*)tierWithLowerTier:(Tier*)lowerTier inManagedObjectContext:(NSManagedObjectContext *)context{
+    Tier *tier = (Tier*)[NSEntityDescription insertNewObjectForEntityForName:@"Tier" inManagedObjectContext:context];
+    tier.lowerTier = lowerTier;
+    tier.priceArtefactPerMonth = lowerTier.priceArtefactPerMonth;
+    tier.artefactMax = [[NSNumber alloc] initWithInt:([lowerTier.artefactMax intValue]+5000)];
+    return tier;
+}
+
 - (int)clientArtefactNum{
-    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"artefactMax" ascending:YES];
-    NSArray *sortedTiers = [self.bill.tiers sortedArrayUsingDescriptors:[NSArray arrayWithObject:nameDescriptor]];
+    NSArray *sortedTiers = [self.bill orderTiersByArtefactMax];
     int artefactsLeft = self.bill.totalUnits;
     //remove artefacts for the range of each tier
     for(Tier *tier in sortedTiers){
