@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
     if(!self.selectedBill){
         [self setSelectedBill:[[Bill alloc] retrieveLastUsedBill:self.managedObjectContext]];
     }
@@ -175,6 +175,7 @@
     // To address
     NSArray *toRecipents = [NSArray arrayWithObject:self.selectedBill.company.email];
     
+    //create mail composer
     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
     mc.mailComposeDelegate = self;
     [mc setSubject:emailTitle];
@@ -190,6 +191,7 @@
     //add attachement
     [mc addAttachmentData:fileData mimeType:mimeType fileName:filePath];
 
+    // present the view controller
     [self presentViewController:mc animated:YES completion:NULL];
 }
 
