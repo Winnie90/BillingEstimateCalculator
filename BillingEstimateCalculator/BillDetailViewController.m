@@ -30,10 +30,11 @@
     }
     [self configureView];
     
+    //tap gesture recognizer to hide keyboard
     UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]
                                            initWithTarget:self
                                            action:@selector(hideKeyBoard)];
-    
+    tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
 }
 
@@ -153,7 +154,6 @@
 
 - (IBAction)didUpdateVersions:(id)sender {
     self.selectedBill.versions = [[NSNumber alloc] initWithFloat:[self.versionsTextField.text floatValue]/100];
-    NSLog(@"versions %@", self.selectedBill.versions);
     [self updateCalculations];
 }
 
@@ -292,8 +292,11 @@
     return cell;
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
@@ -312,7 +315,7 @@
     cell.tierNameLabel.text = [[NSString alloc] initWithFormat:@"Tier %ld", (long)indexPath.row+1];
     
     //get artefact per month from tier
-    cell.priceArtefactPerMonthTextField.placeholder = [[NSString alloc] initWithFormat:@"%.02f", [tier.priceArtefactPerMonth floatValue]];
+    cell.priceArtefactPerMonthTextField.placeholder = [[NSString alloc] initWithFormat:@"$%.02f", [tier.priceArtefactPerMonth floatValue]];
     cell.priceArtefactPerMonthTextField.tag = indexPath.row;
     
     //if tier has a lower tier
@@ -333,7 +336,7 @@
     cell.clientArtefactNumLabel.text = [[NSString alloc] initWithFormat:@"%d", tier.clientArtefactNum];
     
     //calculate num in tier model
-    cell.priceTierPerMonthLabel.text = [[NSString alloc] initWithFormat:@"%.02f", tier.priceTierPerMonth];
+    cell.priceTierPerMonthLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", tier.priceTierPerMonth];
     
     cell.tier = tier;
 }
@@ -424,6 +427,16 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+}
+
+#pragma mark UIGestureRecognizerDelegate methods
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([touch.view isDescendantOfView:self.tableView]) {
+        return NO;
+    }
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {

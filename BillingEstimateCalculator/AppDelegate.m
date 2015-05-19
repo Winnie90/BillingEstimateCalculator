@@ -20,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //setup our split view controller
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
@@ -29,12 +30,31 @@
     MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
     
+    [self setupAppStyling];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if(![defaults boolForKey:@"hasLaunchedBefore"]){
         [defaults setBool:YES forKey:@"hasLaunchedBefore"];
         [self firstLoad];
     }
     return YES;
+}
+
+- (void)setupAppStyling{
+    // set some extra styling icon color and header color
+    self.window.tintColor = [UIColor colorWithRed:178.0f / 255.0f green:0.0f / 255.0f blue:0.0f / 255.0f alpha:1];
+    
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary: [[UIBarButtonItem appearance] titleTextAttributesForState:UIControlStateNormal]];
+    
+    NSShadow *shadow = [NSShadow new];
+    [shadow setShadowColor: [UIColor colorWithRed:0.0f / 255.0f green:0.0f / 255.0f blue:0.0f / 255.0f alpha:1]];
+    [shadow setShadowOffset: CGSizeMake(0.0f, 0.0f)];
+    [attributes setValue:[UIColor colorWithRed:178.0f / 255.0f green:0.0f / 255.0f blue:0.0f / 255.0f alpha:1] forKey:NSForegroundColorAttributeName];
+    [attributes setValue:shadow forKey:NSShadowAttributeName];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+    [[UINavigationBar appearance] setTintColor:[UIColor grayColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0.0f / 255.0f green:0.0f / 255.0f blue:0.0f / 255.0f alpha:1]];
 }
 
 - (void)firstLoad{
