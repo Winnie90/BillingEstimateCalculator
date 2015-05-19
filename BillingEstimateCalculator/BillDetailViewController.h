@@ -44,6 +44,9 @@
 - (IBAction)didUpdateMobile:(id)sender;
 - (IBAction)didUpdateEmail:(id)sender;
 - (IBAction)didUpdatePhone:(id)sender;
+- (IBAction)didUpdateEstimatedArtefacts:(id)sender;
+- (IBAction)didUpdateDuplicates:(id)sender;
+- (IBAction)didUpdateVersions:(id)sender;
 
 @end
 

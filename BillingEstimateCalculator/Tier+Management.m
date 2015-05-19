@@ -22,13 +22,16 @@
     NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"artefactMax" ascending:YES];
     NSArray *sortedTiers = [self.bill.tiers sortedArrayUsingDescriptors:[NSArray arrayWithObject:nameDescriptor]];
     int artefactsLeft = self.bill.totalUnits;
+    //remove artefacts for the range of each tier
     for(Tier *tier in sortedTiers){
+        //if there aren't any artefacts left
         if (artefactsLeft > 0) {
             artefactsLeft -= tier.range;
             if (tier == self) {
-                if(artefactsLeft > 0){
+                if(artefactsLeft > 0 && tier.higherTier){
                     return tier.range;
                 } else {
+                    //the last tier
                     return tier.range + artefactsLeft;
                 }
             }

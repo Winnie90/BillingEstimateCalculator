@@ -76,6 +76,8 @@
     self.pricePerMonthLabel.text = [[NSString alloc] initWithFormat: @"$%.02f", [self.selectedBill pricePerMonth]];
     self.averagePricePerDrawingPerMonthLabel.text = [[NSString alloc] initWithFormat: @"$%.02f", [self.selectedBill averagePricePerDrawingPerMonth]];
     self.pricePerYearLabel.text = [[NSString alloc] initWithFormat: @"$%.02f", [self.selectedBill pricePerYear]];
+    [self.tableView reloadData];
+    [self updateBill];
 }
 
 -(void) updateBillDate{
@@ -122,6 +124,22 @@
 - (IBAction)didUpdatePhone:(id)sender {
     self.selectedBill.company.phone = self.phoneTextField.text;
     [self updateBill];
+}
+
+- (IBAction)didUpdateEstimatedArtefacts:(id)sender {
+    self.selectedBill.estimatedArtefacts = [[NSNumber alloc] initWithInt:[self.estimatedArtefactsTextField.text intValue]];
+    [self updateCalculations];
+}
+
+- (IBAction)didUpdateDuplicates:(id)sender {
+    self.selectedBill.duplicates = [[NSNumber alloc] initWithFloat:[self.duplicatesTextField.text floatValue]/100];
+    [self updateCalculations];
+}
+
+- (IBAction)didUpdateVersions:(id)sender {
+    self.selectedBill.versions = [[NSNumber alloc] initWithFloat:[self.versionsTextField.text floatValue]/100];
+    NSLog(@"versions %@", self.selectedBill.versions);
+    [self updateCalculations];
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
