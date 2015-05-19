@@ -142,6 +142,16 @@
     [self updateCalculations];
 }
 
+- (IBAction)didSelectEditTiersButton:(id)sender {
+    if (self.tableView.editing) {
+        [self.editTiersButton setTitle:@"Edit Tiers" forState:UIControlStateNormal];
+        [self.tableView setEditing:NO animated:NO];
+    } else {
+        [self.editTiersButton setTitle:@"Done" forState:UIControlStateNormal];
+        [self.tableView setEditing:YES animated:YES];
+    }
+}
+
 - (void)textViewDidChange:(UITextView *)textView{
     if(textView == self.addressTextView){
         self.selectedBill.company.address = self.addressTextView.text;

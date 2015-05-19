@@ -25,6 +25,7 @@
 		8338E7291B064F6E002EA426 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E7281B064F6E002EA426 /* Utils.m */; };
 		837189771B07EAD000BF9A2C /* TierTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837189761B07EAD000BF9A2C /* TierTableViewCell.m */; };
 		8371897D1B09DBB400BF9A2C /* Tier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8371897C1B09DBB400BF9A2C /* Tier.m */; };
+		837189B71B0B87AD00BF9A2C /* addIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 837189B61B0B87AD00BF9A2C /* addIcon.png */; };
 		83B46F361B06860300884297 /* BillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B46F351B06860300884297 /* BillTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		837189761B07EAD000BF9A2C /* TierTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TierTableViewCell.m; sourceTree = "<group>"; };
 		8371897B1B09DBB400BF9A2C /* Tier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tier.h; sourceTree = "<group>"; };
 		8371897C1B09DBB400BF9A2C /* Tier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tier.m; sourceTree = "<group>"; };
+		837189B61B0B87AD00BF9A2C /* addIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addIcon.png; sourceTree = "<group>"; };
 		83B46F341B06860300884297 /* BillTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableViewCell.h; sourceTree = "<group>"; };
 		83B46F351B06860300884297 /* BillTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,6 +211,7 @@
 		8338E7181B05FB5F002EA426 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				837189B61B0B87AD00BF9A2C /* addIcon.png */,
 				8338E6DF1B05F27B002EA426 /* Images.xcassets */,
 			);
 			name = Images;
@@ -305,6 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				837189B71B0B87AD00BF9A2C /* addIcon.png in Resources */,
 				8338E6DE1B05F27B002EA426 /* Main.storyboard in Resources */,
 				8338E6E31B05F27B002EA426 /* LaunchScreen.xib in Resources */,
 				8338E6E01B05F27B002EA426 /* Images.xcassets in Resources */,

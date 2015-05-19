@@ -38,6 +38,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *averagePricePerDrawingPerMonthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pricePerYearLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *editTiersButton;
+
 - (IBAction)didUpdateBillName:(id)sender;
 - (IBAction)didUpdateId:(id)sender;
 - (IBAction)didUpdateCompanyName:(id)sender;
@@ -47,6 +49,9 @@
 - (IBAction)didUpdateEstimatedArtefacts:(id)sender;
 - (IBAction)didUpdateDuplicates:(id)sender;
 - (IBAction)didUpdateVersions:(id)sender;
+
+- (IBAction)didSelectEditTiersButton:(id)sender;
+
 
 @end
 
