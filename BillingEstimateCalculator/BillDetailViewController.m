@@ -49,13 +49,13 @@
 }
 
 - (void)setupBillDetails{
-    self.dateLabel.text = [[Utils alloc] formatDateToDateString:self.selectedBill.lastUpdated];
-    self.lastUpdatedLabel.text = [[NSString alloc] initWithFormat:@"Last Updated: %@", [[Utils alloc] formatDateToDateTimeString:self.selectedBill.lastUpdated]];
     self.billNameTextField.placeholder = self.selectedBill.name;
     self.titleTextField.placeholder = self.selectedBill.title;
     self.estimatedArtefactsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", [self.selectedBill.estimatedArtefacts intValue]];
     self.duplicatesTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([self.selectedBill.duplicates floatValue]*100)];
     self.versionsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([self.selectedBill.versions floatValue]*100)];
+    self.dateLabel.text = [[Utils alloc] formatDateToDateString:self.selectedBill.lastUpdated];
+    self.lastUpdatedLabel.text = [[NSString alloc] initWithFormat:@"Last Updated: %@", [[Utils alloc] formatDateToDateTimeString:self.selectedBill.lastUpdated]];
 }
 
 -(void)setupCustomerDetails{
@@ -197,8 +197,8 @@
     [self presentViewController:mc animated:YES completion:NULL];
 }
 
+//get the filepath from resources
 -(NSString*) getFilepath{
-    //get the filepath from resources
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0]; //Get the docs directory
    return [documentsPath stringByAppendingPathComponent:@"screenshot.png"];
@@ -223,7 +223,6 @@
         default:
             break;
     }
-    
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
 }

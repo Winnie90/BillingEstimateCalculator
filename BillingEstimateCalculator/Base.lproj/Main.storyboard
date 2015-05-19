@@ -1242,7 +1242,7 @@
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tier" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AH6-oe-gXW">
-                                                    <rect key="frame" x="12" y="8" width="30" height="14"/>
+                                                    <rect key="frame" x="7" y="8" width="36" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="DVq-3g-A7N"/>
                                                         <constraint firstAttribute="width" constant="287" id="LoX-Vw-8Kb"/>
@@ -1251,7 +1251,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="W7M-Th-td1"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="a2I-ba-pkN"/>
                                                         <constraint firstAttribute="width" constant="287" id="ahz-Z4-0Hs"/>
-                                                        <constraint firstAttribute="width" constant="30" id="ckU-xf-DQV"/>
+                                                        <constraint firstAttribute="width" constant="36" id="ckU-xf-DQV"/>
                                                         <constraint firstAttribute="height" constant="21" id="ia1-th-m94"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="222" id="pgT-lV-YEb"/>
                                                         <constraint firstAttribute="width" constant="109" id="smB-lx-12f"/>
@@ -1450,7 +1450,7 @@
                                                 <constraint firstItem="fO3-5I-Hf7" firstAttribute="leading" secondItem="lyK-3v-uhJ" secondAttribute="trailing" constant="75" id="ffg-aJ-xlM"/>
                                                 <constraint firstItem="fO3-5I-Hf7" firstAttribute="leading" secondItem="lyK-3v-uhJ" secondAttribute="trailing" constant="60" id="gOt-Et-dSz"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ety-vV-iVB" secondAttribute="trailing" constant="62" id="gpn-Ij-cQp"/>
-                                                <constraint firstItem="lyK-3v-uhJ" firstAttribute="leading" secondItem="AH6-oe-gXW" secondAttribute="trailing" constant="49" id="k3E-Xl-dmM"/>
+                                                <constraint firstItem="lyK-3v-uhJ" firstAttribute="leading" secondItem="AH6-oe-gXW" secondAttribute="trailing" constant="48" id="k3E-Xl-dmM"/>
                                                 <constraint firstItem="ety-vV-iVB" firstAttribute="top" secondItem="ySz-Gz-CDz" secondAttribute="topMargin" id="mMO-HK-yLy"/>
                                                 <constraint firstItem="MA4-Xu-NLc" firstAttribute="leading" secondItem="lyK-3v-uhJ" secondAttribute="trailing" constant="117" id="oR7-aW-rpn"/>
                                                 <constraint firstItem="AH6-oe-gXW" firstAttribute="baseline" secondItem="lyK-3v-uhJ" secondAttribute="baseline" id="rle-0z-OGf"/>
