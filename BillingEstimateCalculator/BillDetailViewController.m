@@ -63,12 +63,13 @@
 }
 
 - (void)setupBillDetails{
-    self.dateLabel.text = [[Utils alloc] formatDatetoDateString:self.selectedBill.lastUpdated];
+    self.dateLabel.text = [[Utils alloc] formatDateToDateString:self.selectedBill.lastUpdated];
+    self.lastUpdatedLabel.text = [[NSString alloc] initWithFormat:@"Last Updated: %@", [[Utils alloc] formatDateToDateTimeString:self.selectedBill.lastUpdated]];
     self.billNameTextField.placeholder = self.selectedBill.name;
     self.titleTextField.placeholder = self.selectedBill.title;
     self.estimatedArtefactsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", [self.selectedBill.estimatedArtefacts intValue]];
     self.duplicatesTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([self.selectedBill.duplicates floatValue]*100)];
-    self.versionsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([_selectedBill.versions floatValue]*100)];
+    self.versionsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([self.selectedBill.versions floatValue]*100)];
 }
 
 -(void)setupCustomerDetails{
@@ -94,8 +95,9 @@
     [self updateBill];
 }
 
--(void) updateBillDate{
+- (void) updateBillDate{
     self.selectedBill.lastUpdated = [NSDate date];
+    self.lastUpdatedLabel.text = [[NSString alloc] initWithFormat:@"Last Updated: %@", [[Utils alloc] formatDateToDateTimeString:self.selectedBill.lastUpdated]];
 }
 
 - (void) updateBill{

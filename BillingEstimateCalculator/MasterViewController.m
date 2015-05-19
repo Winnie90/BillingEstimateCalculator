@@ -62,7 +62,6 @@
         NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         BillDetailViewController *controller = (BillDetailViewController *)[[segue destinationViewController] topViewController];
         [controller setManagedObjectContext:self.managedObjectContext];
-        //NSLog(@"controller %@", controller)
         [controller setSelectedBill:(Bill*)object];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
@@ -87,7 +86,6 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
@@ -95,7 +93,6 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-            
         NSError *error = nil;
         if (![context save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
@@ -111,7 +108,7 @@
     cell.nameLabel.text = bill.name;
     cell.titleLabel.text = bill.title;
     cell.companyLabel.text = bill.company.name;
-    cell.lastUpdatedLabel.text = [[Utils alloc] formatDatetoDateTimeString:bill.lastUpdated];
+    cell.lastUpdatedLabel.text = [[Utils alloc] formatDateToDateTimeString:bill.lastUpdated];
 }
 
 #pragma mark - Fetched results controller

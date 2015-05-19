@@ -10,7 +10,7 @@
 
 @interface Utils : NSObject
 
--(NSString*) formatDatetoDateString:(NSDate*)date;
--(NSString*) formatDatetoDateTimeString:(NSDate*)date;
+-(NSString*) formatDateToDateString:(NSDate*)date;
+-(NSString*) formatDateToDateTimeString:(NSDate*)date;
 @end
 
