@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Bill+Management.h"
+#import <MessageUI/MessageUI.h>
 
-@interface BillDetailViewController : UIViewController <UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface BillDetailViewController : UIViewController <UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) Bill *selectedBill;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;

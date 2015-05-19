@@ -26,6 +26,7 @@
 		837189771B07EAD000BF9A2C /* TierTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837189761B07EAD000BF9A2C /* TierTableViewCell.m */; };
 		8371897D1B09DBB400BF9A2C /* Tier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8371897C1B09DBB400BF9A2C /* Tier.m */; };
 		837189B71B0B87AD00BF9A2C /* addIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 837189B61B0B87AD00BF9A2C /* addIcon.png */; };
+		837189B91B0B9B9100BF9A2C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837189B81B0B9B9100BF9A2C /* MessageUI.framework */; };
 		83B46F361B06860300884297 /* BillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B46F351B06860300884297 /* BillTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		8371897B1B09DBB400BF9A2C /* Tier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tier.h; sourceTree = "<group>"; };
 		8371897C1B09DBB400BF9A2C /* Tier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tier.m; sourceTree = "<group>"; };
 		837189B61B0B87AD00BF9A2C /* addIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addIcon.png; sourceTree = "<group>"; };
+		837189B81B0B9B9100BF9A2C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		83B46F341B06860300884297 /* BillTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableViewCell.h; sourceTree = "<group>"; };
 		83B46F351B06860300884297 /* BillTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				837189B91B0B9B9100BF9A2C /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +136,7 @@
 		8338E6CC1B05F27B002EA426 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				837189B81B0B9B9100BF9A2C /* MessageUI.framework */,
 				8338E6CD1B05F27B002EA426 /* Info.plist */,
 				8338E6CE1B05F27B002EA426 /* main.m */,
 			);

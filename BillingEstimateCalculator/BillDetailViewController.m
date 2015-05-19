@@ -51,8 +51,8 @@
     self.dateLabel.text = [[Utils alloc] formatDatetoDateString:self.selectedBill.lastUpdated];
     self.billNameTextField.placeholder = self.selectedBill.name;
     self.titleTextField.placeholder = self.selectedBill.title;
-    self.estimatedArtefactsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", [_selectedBill.estimatedArtefacts intValue]];
-    self.duplicatesTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([_selectedBill.duplicates floatValue]*100)];
+    self.estimatedArtefactsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", [self.selectedBill.estimatedArtefacts intValue]];
+    self.duplicatesTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([self.selectedBill.duplicates floatValue]*100)];
     self.versionsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([_selectedBill.versions floatValue]*100)];
 }
 
@@ -145,6 +145,83 @@
         self.selectedBill.company.address = self.addressTextView.text;
         [self updateBill];
     }
+}
+
+- (IBAction)emailScreenshot:(id)sender {
+    [self captureScreen];
+}
+
+#pragma mark - Send Screenshot
+
+- (void) captureScreen {
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(self.view.bounds.size);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    NSData * data = UIImagePNGRepresentation(image);
+    NSString* filePath = [self getFilepath];
+    [data writeToFile:filePath atomically:YES];
+    [self showEmail];
+}
+
+- (void)showEmail {
+    // Email Subject
+    NSString *emailTitle = @"Your RedEye Bill";
+    // Email Content
+    NSString *messageBody = [[NSString alloc] initWithFormat:@"Hi %@ \n\n Here is your latest bill. \n\n Thanks  \n\n The RedEye Team", self.selectedBill.company.name];
+    // To address
+    NSArray *toRecipents = [NSArray arrayWithObject:self.selectedBill.company.email];
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setToRecipients:toRecipents];
+    
+    NSString* filePath = [self getFilepath];
+    //read the file using NSData
+    NSData * fileData = [NSData dataWithContentsOfFile:filePath];
+    // Set the MIME type
+    NSString *mimeType = @"image/png";
+    
+    //add attachement
+    [mc addAttachmentData:fileData mimeType:mimeType fileName:filePath];
+
+    [self presentViewController:mc animated:YES completion:NULL];
+}
+
+-(NSString*) getFilepath{
+    //get the filepath from resources
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0]; //Get the docs directory
+   return [documentsPath stringByAppendingPathComponent:@"screenshot.png"];
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - Table View Actions

@@ -1772,7 +1772,13 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Bill Estimation" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Bill Estimation" id="mOI-FS-AaM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="FFc-V2-Af2">
+                            <connections>
+                                <action selector="emailScreenshot:" destination="JEX-9P-axG" id="8FR-hD-Ol6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressTextView" destination="YzA-t9-POi" id="8fE-Up-U2n"/>
                         <outlet property="averagePricePerDrawingPerMonthLabel" destination="q8Q-bV-yye" id="tGS-ip-Tfa"/>
