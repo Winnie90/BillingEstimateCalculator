@@ -29,22 +29,7 @@
         [self setSelectedBill:[[Bill alloc] retrieveLastUsedBill:self.managedObjectContext]];
     }
     [self configureView];
-    
-    //tap gesture recognizer to hide keyboard
-    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]
-                                           initWithTarget:self
-                                           action:@selector(hideKeyBoard)];
-    tapGesture.delegate = self;
-    [self.view addGestureRecognizer:tapGesture];
-}
-
-- (IBAction)setNewTextField:(id)sender{
-    UITextField *textField = (UITextField*)sender;
-    self.currentTextField = textField;
-}
-
-- (void)hideKeyBoard {
-    [self.currentTextField resignFirstResponder];
+    [self setupGestureRecognizer];
 }
 
 - (void)setSelectedBill:(id)newDetailItem {
@@ -429,7 +414,25 @@
     [self.tableView endUpdates];
 }
 
-#pragma mark UIGestureRecognizerDelegate methods
+#pragma mark UIGestureRecognizer methods
+
+- (void)setupGestureRecognizer{
+    //tap gesture recognizer to hide keyboard
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]
+                                           initWithTarget:self
+                                           action:@selector(hideKeyBoard)];
+    tapGesture.delegate = self;
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (IBAction)setNewTextField:(id)sender{
+    UITextField *textField = (UITextField*)sender;
+    self.currentTextField = textField;
+}
+
+- (void)hideKeyBoard {
+    [self.currentTextField resignFirstResponder];
+}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
