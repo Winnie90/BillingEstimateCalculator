@@ -653,7 +653,7 @@
                                     <constraint firstAttribute="width" constant="109" id="fOu-aw-xOQ"/>
                                     <constraint firstAttribute="width" constant="287" id="lf9-nX-GzZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -687,7 +687,7 @@
                                     <constraint firstAttribute="height" constant="21" id="wEX-ak-VlY"/>
                                     <constraint firstAttribute="width" constant="287" id="zIM-eo-S97"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -715,6 +715,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="didUpdateBillName:" destination="JEX-9P-axG" eventType="editingChanged" id="SxH-RR-BOZ"/>
+                                    <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="xPT-iq-gSb"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Example Company Name" clearsOnBeginEditing="YES" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="avN-eh-kGh">
@@ -724,6 +725,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="didUpdateCompanyName:" destination="JEX-9P-axG" eventType="editingChanged" id="bgg-kZ-ecO"/>
+                                    <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="Yol-uf-gb2"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Example Company Id" clearsOnBeginEditing="YES" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="J03-k7-TaX">
@@ -733,6 +735,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="didUpdateId:" destination="JEX-9P-axG" eventType="editingChanged" id="ptj-M9-RJx"/>
+                                    <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="8c4-8B-Drn"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxi-AG-9P1">
@@ -766,6 +769,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                 <connections>
                                     <action selector="didUpdateEmail:" destination="JEX-9P-axG" eventType="editingChanged" id="psa-GQ-sjI"/>
+                                    <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="L1x-pw-dwA"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Example Mobile Number" clearsOnBeginEditing="YES" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Xdc-wh-TAV">
@@ -775,6 +779,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                 <connections>
                                     <action selector="didUpdateMobile:" destination="JEX-9P-axG" eventType="editingChanged" id="bWK-MJ-v08"/>
+                                    <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="9ot-tX-D0c"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Example Phone Number" clearsOnBeginEditing="YES" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="mgK-ea-QoJ">
@@ -787,6 +792,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                 <connections>
                                     <action selector="didUpdatePhone:" destination="JEX-9P-axG" eventType="editingChanged" id="bCd-hM-BVW"/>
+                                    <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="6kK-pK-Ixh"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$84450.50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gx0-3M-sih">
@@ -835,6 +841,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                 <connections>
                                     <action selector="didUpdateEstimatedArtefacts:" destination="JEX-9P-axG" eventType="editingChanged" id="gJ1-eG-0oB"/>
+                                    <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="YvZ-0q-7QS"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1000" placeholder="1000" clearsOnBeginEditing="YES" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="vQX-yY-ogk">
@@ -877,6 +884,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                 <connections>
                                     <action selector="didUpdateDuplicates:" destination="JEX-9P-axG" eventType="editingChanged" id="Hg8-fe-RpA"/>
+                                    <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="Mwu-eU-mz4"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="100" clearsOnBeginEditing="YES" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="e8A-w6-iTq">
@@ -889,6 +897,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                 <connections>
                                     <action selector="didUpdateVersions:" destination="JEX-9P-axG" eventType="editingChanged" id="Khs-a2-lg3"/>
+                                    <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="iqh-ZS-jR7"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID: " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDI-oy-HLf">
@@ -953,6 +962,9 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="ZcT-qf-z1E"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artefact Range" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDF-cC-Esc">
                                 <rect key="frame" x="195" y="361" width="82" height="14"/>
@@ -1199,7 +1211,11 @@
                                                     </constraints>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <connections>
+                                                        <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="AxF-t7-6m6"/>
+                                                        <outlet property="delegate" destination="JEX-9P-axG" id="jY5-Ln-pmU"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$0.70" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="lyK-3v-uhJ">
                                                     <rect key="frame" x="91" y="8" width="42" height="17"/>
@@ -1212,7 +1228,7 @@
                                                     </constraints>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="VpA-qU-c8Z"/>
@@ -1220,6 +1236,10 @@
                                                             <exclude reference="eTV-x5-yW7"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="2O2-vJ-sUY"/>
+                                                        <outlet property="delegate" destination="JEX-9P-axG" id="L83-r4-pQB"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tier" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AH6-oe-gXW">
                                                     <rect key="frame" x="12" y="8" width="30" height="14"/>
@@ -1849,7 +1869,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Bill Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLs-kc-JkM">
                                             <rect key="frame" x="8" y="12" width="59" height="28"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.69803921570000005" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWQ-b6-Agu">
@@ -1858,13 +1878,11 @@
                                                 <constraint firstAttribute="height" constant="21" id="thh-dH-kRH"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDC-OH-Smr">
                                             <rect key="frame" x="8" y="77" width="424" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Updated" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="md3-st-AIz">

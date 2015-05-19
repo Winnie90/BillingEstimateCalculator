@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Tier+Management.h"
 
 @interface TierTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *tierNameLabel;
@@ -16,4 +17,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *artefactRangeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *clientArtefactNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceTierPerMonthLabel;
+@property (weak, nonatomic) Tier *tier;
 @end

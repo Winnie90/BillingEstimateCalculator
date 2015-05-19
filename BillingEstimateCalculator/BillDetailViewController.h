@@ -10,12 +10,13 @@
 #import "Bill+Management.h"
 #import <MessageUI/MessageUI.h>
 
-@interface BillDetailViewController : UIViewController <UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface BillDetailViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) Bill *selectedBill;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) NSInteger *numberOfSections;
+@property (weak, nonatomic) UITextField *currentTextField;
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextField *customerIdTextField;
@@ -53,5 +54,7 @@
 
 - (IBAction)didSelectEditTiersButton:(id)sender;
 - (IBAction)insertNewObject:(id)sender;
+
+- (IBAction)setNewTextField:(id)sender;
 @end
 

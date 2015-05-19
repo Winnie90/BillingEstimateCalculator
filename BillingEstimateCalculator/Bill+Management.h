@@ -20,4 +20,5 @@
 - (float)averagePricePerDrawingPerMonth;
 - (float)pricePerYear;
 - (NSArray*)orderTiersByArtefactMax;
+- (void)refreshTiers;
 @end

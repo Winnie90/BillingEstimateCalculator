@@ -51,6 +51,17 @@
     return [self.tiers sortedArrayUsingDescriptors:[NSArray arrayWithObject:nameDescriptor]];
 }
 
+- (void)refreshTiers{
+    Tier *lastTier = nil;
+    for (Tier *tier in [self orderTiersByArtefactMax]) {
+        if(lastTier){
+            tier.lowerTier = lastTier;
+        }
+        lastTier = tier;
+        
+    }
+}
+
 - (int)removedArtefacts{
    return (int)([self.estimatedArtefacts floatValue] * [self.duplicates floatValue]);
 }

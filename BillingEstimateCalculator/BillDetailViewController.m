@@ -13,7 +13,7 @@
 #import "Tier+Management.h"
 
 @interface BillDetailViewController ()
-
+    
 @end
 
 @implementation BillDetailViewController
@@ -29,6 +29,21 @@
         [self setSelectedBill:[[Bill alloc] retrieveLastUsedBill:self.managedObjectContext]];
     }
     [self configureView];
+    
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]
+                                           initWithTarget:self
+                                           action:@selector(hideKeyBoard)];
+    
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (IBAction)setNewTextField:(id)sender{
+    UITextField *textField = (UITextField*)sender;
+    self.currentTextField = textField;
+}
+
+- (void)hideKeyBoard {
+    [self.currentTextField resignFirstResponder];
 }
 
 - (void)setSelectedBill:(id)newDetailItem {
@@ -76,7 +91,6 @@
     self.pricePerMonthLabel.text = [[NSString alloc] initWithFormat: @"$%.02f", [self.selectedBill pricePerMonth]];
     self.averagePricePerDrawingPerMonthLabel.text = [[NSString alloc] initWithFormat: @"$%.02f", [self.selectedBill averagePricePerDrawingPerMonth]];
     self.pricePerYearLabel.text = [[NSString alloc] initWithFormat: @"$%.02f", [self.selectedBill pricePerYear]];
-    [self.tableView reloadData];
     [self updateBill];
 }
 
@@ -90,6 +104,7 @@
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Couldn't save: %@, %@", [error localizedDescription], [error userInfo]);
     }
+    [self.tableView reloadData];
 }
 
 #pragma mark - Action Handlers
@@ -241,11 +256,19 @@
 - (void)insertNewObject:(id)sender {
     // Create a new tier object and add it to the selected bill
     [self.selectedBill addTiersObject:[Tier tierWithLowerTier:[self.selectedBill getTierWithHighestArtefactMax] inManagedObjectContext:self.managedObjectContext]];
-    // Save the context.
-    NSError *error = nil;
-    if (![self.managedObjectContext  save:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+    [self updateCalculations];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:textField.tag inSection:0];
+    TierTableViewCell *cell = (TierTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    float priceArtefactPerMonth = [cell.priceArtefactPerMonthTextField.text floatValue];
+    if(priceArtefactPerMonth > 0){
+        cell.tier.priceArtefactPerMonth = [[NSNumber alloc] initWithFloat:priceArtefactPerMonth];
+    }
+    int artefactMax = [cell.artefactMaxTextField.text intValue];
+    if(artefactMax > 0){
+        cell.tier.artefactMax = [[NSNumber alloc] initWithInt:artefactMax];
     }
     [self updateCalculations];
 }
@@ -276,12 +299,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        
-        NSError *error = nil;
-        if (![context save:&error]) {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
+        [self.selectedBill refreshTiers];
         [self updateCalculations];
     }
 }
@@ -292,7 +310,8 @@
     cell.tierNameLabel.text = [[NSString alloc] initWithFormat:@"Tier %ld", (long)indexPath.row+1];
     
     //get artefact per month from tier
-    cell.priceArtefactPerMonthTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", tier.priceArtefactPerMonth];
+    cell.priceArtefactPerMonthTextField.placeholder = [[NSString alloc] initWithFormat:@"%.02f", [tier.priceArtefactPerMonth floatValue]];
+    cell.priceArtefactPerMonthTextField.tag = indexPath.row;
     
     //if tier has a lower tier
     if (!tier.lowerTier) {
@@ -303,6 +322,7 @@
     
     //get artefact max from tier
     cell.artefactMaxTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", tier.artefactMax];
+    cell.artefactMaxTextField.tag = indexPath.row;
     
     //calculate in tier model
     cell.artefactRangeLabel.text = [[NSString alloc] initWithFormat:@"%d", tier.range];
@@ -312,8 +332,9 @@
     
     //calculate num in tier model
     cell.priceTierPerMonthLabel.text = [[NSString alloc] initWithFormat:@"%.02f", tier.priceTierPerMonth];
+    
+    cell.tier = tier;
 }
-
 
 #pragma mark - Fetched results controller
 
