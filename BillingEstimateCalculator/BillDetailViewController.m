@@ -150,14 +150,14 @@
 }
 
 - (IBAction)didUpdateDuplicates:(id)sender {
-    if ([self.duplicatesTextField validPercentage:self errorString:[[NSString alloc] initWithFormat:@"%@", self.selectedBill.duplicates]]){
+    if ([self.duplicatesTextField validPercentage:self errorString:[[NSString alloc] initWithFormat:@"%d", [self.selectedBill.duplicates intValue]*100]]){
         self.selectedBill.duplicates = [[NSNumber alloc] initWithFloat:[self.duplicatesTextField.text floatValue]/100];
         [self updateCalculations];
     }
 }
 
 - (IBAction)didUpdateVersions:(id)sender {
-    if ([self.versionsTextField validPercentage:self errorString:[[NSString alloc] initWithFormat:@"%@", self.selectedBill.versions]]) {
+    if ([self.versionsTextField validPercentage:self errorString:[[NSString alloc] initWithFormat:@"%d", [self.selectedBill.duplicates intValue]*100]]) {
         self.selectedBill.versions = [[NSNumber alloc] initWithFloat:[self.versionsTextField.text floatValue]/100];
         [self updateCalculations];
     }
@@ -194,6 +194,8 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
+    [textField resignFirstResponder];
+    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:textField.tag inSection:0];
     TierTableViewCell *cell = (TierTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
@@ -208,7 +210,7 @@
             cell.tier.artefactMax = [[NSNumber alloc] initWithInt:[cell.artefactMaxTextField.text intValue]];
         }
     }
-    
+    [self.selectedBill refreshTiers];
     [self updateCalculations];
 }
 
@@ -235,6 +237,7 @@
     cell.tierNameLabel.text = [[NSString alloc] initWithFormat:@"Tier %ld", (long)indexPath.row+1];
     
     //get artefact per month from tier
+    cell.priceArtefactPerMonthTextField.text = @"";
     cell.priceArtefactPerMonthTextField.placeholder = [[NSString alloc] initWithFormat:@"$%.02f", [tier.priceArtefactPerMonth floatValue]];
     cell.priceArtefactPerMonthTextField.tag = indexPath.row;
     
@@ -246,6 +249,7 @@
     }
     
     //get artefact max from tier
+    cell.artefactMaxTextField.text = @"";
     cell.artefactMaxTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", tier.artefactMax];
     cell.artefactMaxTextField.tag = indexPath.row;
     
@@ -473,12 +477,16 @@
 - (IBAction)setNewTextField:(id)sender{
     UITextField *textField = (UITextField*)sender;
     self.currentTextField = textField;
-    [self keyboardWillShow];
+    //[self keyboardWillShow];
 }
 
 - (IBAction)textFieldFinished:(id)sender
 {
     [sender resignFirstResponder];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    [self keyboardWillShow];
 }
 
 #pragma mark Keyboard show methods
@@ -489,10 +497,8 @@
 
 - (void)keyboardWillShow {
     NSLog(@"%f", self.currentTextField.frame.origin.y);
-    if (self.currentTextField.frame.origin.y > 380) {
-        float newVerticalPosition = -self.keyboardSize.height;
-        [self moveFrameToVerticalPosition:newVerticalPosition forDuration:0.3f];
-    }
+    float newVerticalPosition = -self.keyboardSize.height+72;
+    [self moveFrameToVerticalPosition:newVerticalPosition forDuration:0.3f];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
