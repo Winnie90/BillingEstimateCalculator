@@ -6,12 +6,13 @@
 //  Copyright (c) 2015 Winstanley. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "UIKit/UIKit.h"
 
 @interface Utils : NSObject
 
 +(Utils*)getInstance;
 -(NSString*) formatDateToDateString:(NSDate*)date;
 -(NSString*) formatDateToDateTimeString:(NSDate*)date;
+-(void)errorAlert:(UIViewController*)vc title:(NSString*)title message:(NSString*)message;
 @end
 

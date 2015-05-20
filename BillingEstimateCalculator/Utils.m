@@ -42,4 +42,11 @@ static Utils *mgr = nil;
 -(BOOL) isStringBlank:(NSString*)checkString{
     return [checkString length] == 0;
 }
+
+-(void)errorAlert:(UIViewController*)vc title:(NSString*)title message:(NSString*)message{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:okAction];
+    [vc presentViewController:alertController animated:YES completion:nil];
+}
 @end

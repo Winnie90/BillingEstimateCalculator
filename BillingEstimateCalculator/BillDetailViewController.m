@@ -12,6 +12,7 @@
 #import "TierTableViewCell.h"
 #import "Tier+Management.h"
 #import "NSString+Common.h"
+#import "UITextField+Validation.h"
 
 @interface BillDetailViewController ()
     @property (weak, nonatomic) UITextField *currentTextField;
@@ -135,70 +136,30 @@
 }
 
 - (IBAction)didUpdateEmail:(id)sender {
-    if (![self.emailTextField.text isBlank]) {
-        if ([self.emailTextField.text isValidEmailAddress]) {
-            self.selectedBill.company.email = self.emailTextField.text;
-            [self updateBill];
-        } else {
-            [self errorAlert:@"Incorrect Email" message:@"The email address you entered wasn't valid"];
-            self.emailTextField.text = nil;
-            self.emailTextField.placeholder = self.selectedBill.company.email;
-        }
-    } else {
-        [self errorAlert:@"Blank Email" message:@"The email address you entered was blank"];
-        self.emailTextField.text = nil;
-        self.emailTextField.placeholder = self.selectedBill.company.email;
+    if ([self.emailTextField validEmail:self errorString:self.selectedBill.company.email]) {
+        self.selectedBill.company.email = self.emailTextField.text;
+        [self updateBill];
     }
 }
 
 - (IBAction)didUpdateEstimatedArtefacts:(id)sender {
-    if (![self.estimatedArtefactsTextField.text isBlank]) {
-        if ([self.estimatedArtefactsTextField.text isValidNumber]) {
-            self.selectedBill.estimatedArtefacts = [[NSNumber alloc] initWithInt:[self.estimatedArtefactsTextField.text intValue]];
-            [self updateCalculations];
-        } else {
-            [self errorAlert:@"Incorrect Number" message:@"The estimated artefacts text you entered wasn't a valid number"];
-            self.estimatedArtefactsTextField.text = nil;
-            self.estimatedArtefactsTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.estimatedArtefacts];
-        }
-    } else {
-        [self errorAlert:@"Incorrect Number" message:@"The estimated artefacts text you entered was blank"];
-        self.estimatedArtefactsTextField.text = nil;
-        self.estimatedArtefactsTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.estimatedArtefacts];
+    if ([self.estimatedArtefactsTextField validNumber:self errorString:[[NSString alloc] initWithFormat:@"%@", self.selectedBill.estimatedArtefacts]]) {
+        self.selectedBill.estimatedArtefacts = [[NSNumber alloc] initWithInt:[self.estimatedArtefactsTextField.text intValue]];
+        [self updateCalculations];
     }
 }
 
 - (IBAction)didUpdateDuplicates:(id)sender {
-    if (![self.duplicatesTextField.text isBlank]) {
-        if ([self.duplicatesTextField.text isValidNumber] && [self.duplicatesTextField.text floatValue]<=100.0) {
-            self.selectedBill.duplicates = [[NSNumber alloc] initWithFloat:[self.duplicatesTextField.text floatValue]/100];
-            [self updateCalculations];
-        } else {
-            [self errorAlert:@"Incorrect Number" message:@"The duplicates text you entered wasn't a valid number. It must be less than 100%."];
-            self.duplicatesTextField.text = nil;
-            self.duplicatesTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.duplicates];
-        }
-    } else {
-        [self errorAlert:@"Incorrect Number" message:@"The duplicates text you entered was blank"];
-        self.duplicatesTextField.text = nil;
-        self.duplicatesTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.duplicates];
+    if ([self.duplicatesTextField validPercentage:self errorString:[[NSString alloc] initWithFormat:@"%@", self.selectedBill.duplicates]]){
+        self.selectedBill.duplicates = [[NSNumber alloc] initWithFloat:[self.duplicatesTextField.text floatValue]/100];
+        [self updateCalculations];
     }
 }
 
 - (IBAction)didUpdateVersions:(id)sender {
-    if (![self.versionsTextField.text isBlank]) {
-        if ([self.versionsTextField.text isValidNumber] && [self.versionsTextField.text floatValue]<=100.0) {
-            self.selectedBill.versions = [[NSNumber alloc] initWithFloat:[self.versionsTextField.text floatValue]/100];
-            [self updateCalculations];
-        } else {
-            [self errorAlert:@"Incorrect Number" message:@"The versions text you entered wasn't a valid number. It must be less than 100%."];
-            self.versionsTextField.text = nil;
-            self.versionsTextField.text = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.versions];
-        }
-    } else {
-        [self errorAlert:@"Incorrect Number" message:@"The versions text you entered was blank"];
-        self.versionsTextField.text = nil;
-        self.versionsTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.versions];
+    if ([self.versionsTextField validPercentage:self errorString:[[NSString alloc] initWithFormat:@"%@", self.selectedBill.versions]]) {
+        self.selectedBill.versions = [[NSNumber alloc] initWithFloat:[self.versionsTextField.text floatValue]/100];
+        [self updateCalculations];
     }
 }
 
@@ -211,13 +172,6 @@
 
 - (IBAction)emailScreenshot:(id)sender {
     [self captureScreenshot];
-}
-
--(void)errorAlert:(NSString*)title message:(NSString*)message{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:nil];
-    [alertController addAction:okAction];
-    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Tier table View Actions
@@ -244,20 +198,14 @@
     TierTableViewCell *cell = (TierTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
     if(textField == cell.priceArtefactPerMonthTextField){
-        if (![cell.priceArtefactPerMonthTextField.text isBlank] && [cell.priceArtefactPerMonthTextField.text isValidNumber] && [cell.priceArtefactPerMonthTextField.text floatValue] >=0.0) {
+        if ([cell.priceArtefactPerMonthTextField greaterThan:0 vc:self errorString:[[NSString alloc] initWithFormat:@"$%.02f", [cell.tier.priceArtefactPerMonth floatValue]]]) {
+            self.currentTextField = cell.priceArtefactPerMonthTextField;
             cell.tier.priceArtefactPerMonth = [[NSNumber alloc] initWithFloat:[cell.priceArtefactPerMonthTextField.text floatValue]];
-        } else {
-            [self errorAlert:@"Incorrect Number" message:@"The price artefact per month text you entered wasn't a valid number. It must be greater than or equal to 0."];
-            cell.priceArtefactPerMonthTextField.text = nil;
-            cell.priceArtefactPerMonthTextField.placeholder = [[NSString alloc] initWithFormat:@"$%.02f", [cell.tier.priceArtefactPerMonth floatValue]];
         }
     } else if (textField == cell.artefactMaxTextField){
-        if (![cell.artefactMaxTextField.text isBlank] && [cell.artefactMaxTextField.text isValidNumber] && [cell.artefactMaxTextField.text intValue] > 1) {
+        if ([cell.artefactMaxTextField greaterThan:1 vc:self errorString:[[NSString alloc] initWithFormat:@"%@", cell.tier.artefactMax]]) {
+            self.currentTextField = cell.artefactMaxTextField;
             cell.tier.artefactMax = [[NSNumber alloc] initWithInt:[cell.artefactMaxTextField.text intValue]];
-        } else {
-            [self errorAlert:@"Incorrect Number" message:@"The price artefact per month text you entered wasn't a valid number. It must be greater than or equal to 0."];
-            cell.artefactMaxTextField.text = nil;
-            cell.artefactMaxTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", cell.tier.artefactMax];
         }
     }
     
@@ -421,7 +369,7 @@
 
 #pragma mark - Send screenshot methods
 
-- (void) captureScreenshot {
+- (void)captureScreenshot {
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
         UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, [UIScreen mainScreen].scale);
     } else {
@@ -494,7 +442,7 @@
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
     if (error) {
-        [self errorAlert:@"Mail sent failure" message:[[NSString alloc] initWithFormat:@"%@", [error localizedDescription]]];
+        [[Utils getInstance] errorAlert:self title:@"Mail sent failure" message:[[NSString alloc] initWithFormat:@"%@", [error localizedDescription]]];
     }
 }
 
@@ -541,7 +489,7 @@
 
 - (void)keyboardWillShow {
     NSLog(@"%f", self.currentTextField.frame.origin.y);
-    if (self.currentTextField.frame.origin.y > 250) {
+    if (self.currentTextField.frame.origin.y > 380) {
         float newVerticalPosition = -self.keyboardSize.height;
         [self moveFrameToVerticalPosition:newVerticalPosition forDuration:0.3f];
     }
