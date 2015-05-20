@@ -13,12 +13,10 @@
 #import "Tier+Management.h"
 
 @interface BillDetailViewController ()
-    
+    @property (weak, nonatomic) UITextField *currentTextField;
 @end
 
 @implementation BillDetailViewController
-
-@synthesize billNameTextField = _billNameTextField;
 
 #pragma mark - Managing the detail item
 
@@ -38,7 +36,7 @@
     }
 }
 
-#pragma mark - Setup View
+#pragma mark - Setup bill view methods
 
 - (void)configureView {
     if (self.selectedBill) {
@@ -67,10 +65,10 @@
     self.phoneTextField.placeholder = self.selectedBill.company.phone;
 }
 
-#pragma mark - Update Bill View
+#pragma mark - Update bill view methods
 
-// Kept calculations in the model to make view code cleaner,
-// Could move into the view or cache results to reduce running calculations multiple times
+// Kept calculations in the model to make viewcontroller code cleaner,
+// Could cache results to reduce running calculations multiple times
 - (void)updateCalculations{
     self.removedArtefactsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill removedArtefacts]];
     self.foldedVersionsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill foldedInVersions]];
@@ -180,8 +178,7 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-
-#pragma mark - Table View Actions
+#pragma mark - Tier table View Actions
 
 - (IBAction)didSelectEditTiersButton:(id)sender {
     //switch the editing state of the table view
@@ -223,7 +220,7 @@
     [self updateCalculations];
 }
 
-#pragma mark - Table View
+#pragma mark - Tier table view creation methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [[self.fetchedResultsController sections] count];
@@ -238,23 +235,6 @@
     TierTableViewCell *cell = (TierTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"TierCell" forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleDelete;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        [self.selectedBill refreshTiers];
-        [self updateCalculations];
-    }
 }
 
 - (void)configureCell:(TierTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -289,7 +269,26 @@
     cell.tier = tier;
 }
 
-#pragma mark - Fetched results controller
+#pragma mark - Tier table view editing methods
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        [self.selectedBill refreshTiers];
+        [self updateCalculations];
+    }
+}
+
+#pragma mark - Fetched results controller methods
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
@@ -308,7 +307,6 @@
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"artefactMax" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
-    
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
@@ -377,7 +375,7 @@
     [self.tableView endUpdates];
 }
 
-#pragma mark - Send Screenshot
+#pragma mark - Send screenshot methods
 
 - (void) captureScreenshot {
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
@@ -422,10 +420,11 @@
     [self presentViewController:mc animated:YES completion:NULL];
 }
 
-//get the filepath from resources
 -(NSString*) getFilepath{
+    //get the filepath from resources
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0]; //Get the docs directory
+    //Get the docs directory
+    NSString *documentsPath = [paths objectAtIndex:0];
     return [documentsPath stringByAppendingPathComponent:@"screenshot.png"];
 }
 
@@ -455,7 +454,7 @@
     }
 }
 
-#pragma mark UIGestureRecognizer methods
+#pragma mark Text field methods
 
 - (void)setupGestureRecognizer{
     //tap gesture recognizer to hide keyboard
@@ -466,13 +465,9 @@
     [self.view addGestureRecognizer:tapGesture];
 }
 
-- (IBAction)setNewTextField:(id)sender{
-    UITextField *textField = (UITextField*)sender;
-    self.currentTextField = textField;
-}
-
 - (void)hideKeyBoard {
     [self.currentTextField resignFirstResponder];
+    [self.addressTextView resignFirstResponder];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
@@ -482,6 +477,18 @@
     }
     return YES;
 }
+
+- (IBAction)setNewTextField:(id)sender{
+    UITextField *textField = (UITextField*)sender;
+    self.currentTextField = textField;
+}
+
+- (IBAction)textFieldFinished:(id)sender
+{
+    [sender resignFirstResponder];
+}
+
+#pragma mark Memory warning methods
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

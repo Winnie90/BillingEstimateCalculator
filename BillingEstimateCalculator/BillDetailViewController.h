@@ -16,7 +16,6 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) NSInteger *numberOfSections;
-@property (weak, nonatomic) UITextField *currentTextField;
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextField *customerIdTextField;
@@ -33,29 +32,36 @@
 @property (weak, nonatomic) IBOutlet UITextField *estimatedArtefactsTextField;
 @property (weak, nonatomic) IBOutlet UITextField *duplicatesTextField;
 @property (weak, nonatomic) IBOutlet UITextField *versionsTextField;
-@property (weak, nonatomic) IBOutlet UITextField *totalUnitsLabel;
-@property (weak, nonatomic) IBOutlet UITextField *removedArtefactsLabel;
-@property (weak, nonatomic) IBOutlet UITextField *foldedVersionsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalUnitsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *removedArtefactsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *foldedVersionsLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *pricePerMonthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *averagePricePerDrawingPerMonthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pricePerYearLabel;
 
+//edit tiers properties
 @property (weak, nonatomic) IBOutlet UIButton *editTiersButton;
 
+//update bill detail actions
 - (IBAction)didUpdateBillName:(id)sender;
 - (IBAction)didUpdateId:(id)sender;
-- (IBAction)didUpdateCompanyName:(id)sender;
-- (IBAction)didUpdateMobile:(id)sender;
-- (IBAction)didUpdateEmail:(id)sender;
-- (IBAction)didUpdatePhone:(id)sender;
 - (IBAction)didUpdateEstimatedArtefacts:(id)sender;
 - (IBAction)didUpdateDuplicates:(id)sender;
 - (IBAction)didUpdateVersions:(id)sender;
 
+// update company detail actions
+- (IBAction)didUpdateCompanyName:(id)sender;
+- (IBAction)didUpdateMobile:(id)sender;
+- (IBAction)didUpdateEmail:(id)sender;
+- (IBAction)didUpdatePhone:(id)sender;
+
+//update tiers actions
 - (IBAction)didSelectEditTiersButton:(id)sender;
 - (IBAction)insertNewObject:(id)sender;
 
+//get to resign view controller
 - (IBAction)setNewTextField:(id)sender;
+- (IBAction)textFieldFinished:(id)sender;
 @end
 
