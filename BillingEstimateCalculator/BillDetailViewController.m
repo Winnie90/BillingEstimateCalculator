@@ -225,6 +225,13 @@
     }
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
+    if (error) {
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Mail sent failure"
+                                              message:[[NSString alloc] initWithFormat:@"%@", [error localizedDescription]]
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
 }
 
 #pragma mark - Table View Actions
