@@ -191,7 +191,7 @@
     NSString *mimeType = @"image/png";
     
     //add attachement
-    [mc addAttachmentData:fileData mimeType:mimeType fileName:filePath];
+    [mc addAttachmentData:fileData mimeType:mimeType fileName:[[NSString alloc] initWithFormat:@"%@-RedEyeBill-%@", self.selectedBill.company.name, [[Utils alloc] formatDateToDateString:self.selectedBill.lastUpdated]]];
 
     // present the view controller
     [self presentViewController:mc animated:YES completion:NULL];
