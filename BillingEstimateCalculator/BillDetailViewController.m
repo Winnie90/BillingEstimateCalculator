@@ -54,8 +54,8 @@
     self.estimatedArtefactsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", [self.selectedBill.estimatedArtefacts intValue]];
     self.duplicatesTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([self.selectedBill.duplicates floatValue]*100)];
     self.versionsTextField.placeholder = [[NSString alloc] initWithFormat:@"%d", (int)([self.selectedBill.versions floatValue]*100)];
-    self.dateLabel.text = [[Utils alloc] formatDateToDateString:self.selectedBill.lastUpdated];
-    self.lastUpdatedLabel.text = [[NSString alloc] initWithFormat:@"Last Updated: %@", [[Utils alloc] formatDateToDateTimeString:self.selectedBill.lastUpdated]];
+    self.dateLabel.text = [[Utils getInstance] formatDateToDateString:self.selectedBill.lastUpdated];
+    self.lastUpdatedLabel.text = [[NSString alloc] initWithFormat:@"Last Updated: %@", [[Utils getInstance] formatDateToDateTimeString:self.selectedBill.lastUpdated]];
 }
 
 -(void)setupCustomerDetails{
@@ -83,7 +83,7 @@
 
 - (void) updateBillDate{
     self.selectedBill.lastUpdated = [NSDate date];
-    self.lastUpdatedLabel.text = [[NSString alloc] initWithFormat:@"Last Updated: %@", [[Utils alloc] formatDateToDateTimeString:self.selectedBill.lastUpdated]];
+    self.lastUpdatedLabel.text = [[NSString alloc] initWithFormat:@"Last Updated: %@", [[Utils getInstance] formatDateToDateTimeString:self.selectedBill.lastUpdated]];
 }
 
 - (void) updateBill{
@@ -117,34 +117,49 @@
     [self updateBill];
 }
 
-- (IBAction)didUpdateEmail:(id)sender {
-    if ([[Utils alloc] isValidEmailAddress:self.emailTextField.text]) {
-        self.selectedBill.company.email = self.emailTextField.text;
-        [self updateBill];
-    } else {
-        [self errorAlert:@"Incorrect Email" message:@"The email address you entered wasn't valid."];
-        self.emailTextField.text = self.selectedBill.company.email;
-    }
-}
-
 - (IBAction)didUpdatePhone:(id)sender {
     self.selectedBill.company.phone = self.phoneTextField.text;
     [self updateBill];
 }
 
+- (IBAction)didUpdateEmail:(id)sender {
+    if ([[Utils getInstance] isValidEmailAddress:self.emailTextField.text]) {
+        self.selectedBill.company.email = self.emailTextField.text;
+        [self updateBill];
+    } else {
+        [self errorAlert:@"Incorrect Email" message:@"The email address you entered wasn't valid"];
+        self.emailTextField.text = self.selectedBill.company.email;
+    }
+}
+
 - (IBAction)didUpdateEstimatedArtefacts:(id)sender {
-    self.selectedBill.estimatedArtefacts = [[NSNumber alloc] initWithInt:[self.estimatedArtefactsTextField.text intValue]];
-    [self updateCalculations];
+    if ([[Utils getInstance] isValidNumber:self.estimatedArtefactsTextField.text]) {
+        self.selectedBill.estimatedArtefacts = [[NSNumber alloc] initWithInt:[self.estimatedArtefactsTextField.text intValue]];
+        [self updateCalculations];
+    } else {
+        [self errorAlert:@"Incorrect Number" message:@"The estimated artefacts text you entered wasn't a valid number"];
+        self.estimatedArtefactsTextField.text = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.estimatedArtefacts];
+    }
 }
 
 - (IBAction)didUpdateDuplicates:(id)sender {
-    self.selectedBill.duplicates = [[NSNumber alloc] initWithFloat:[self.duplicatesTextField.text floatValue]/100];
-    [self updateCalculations];
+    if ([[Utils getInstance] isValidNumber:self.duplicatesTextField.text] && [self.duplicatesTextField.text floatValue]<=100.0) {
+        self.selectedBill.duplicates = [[NSNumber alloc] initWithFloat:[self.duplicatesTextField.text floatValue]/100];
+        [self updateCalculations];
+    } else {
+        [self errorAlert:@"Incorrect Number" message:@"The duplicates text you entered wasn't a valid number. It must be less than 100%."];
+        self.duplicatesTextField.text = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.duplicates];
+    }
 }
 
 - (IBAction)didUpdateVersions:(id)sender {
-    self.selectedBill.versions = [[NSNumber alloc] initWithFloat:[self.versionsTextField.text floatValue]/100];
-    [self updateCalculations];
+    if ([[Utils getInstance] isValidNumber:self.versionsTextField.text] && [self.versionsTextField.text floatValue]<=100.0) {
+        self.selectedBill.versions = [[NSNumber alloc] initWithFloat:[self.versionsTextField.text floatValue]/100];
+        [self updateCalculations];
+    } else {
+        [self errorAlert:@"Incorrect Number" message:@"The versions text you entered wasn't a valid number. It must be less than 100%."];
+        self.versionsTextField.text = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.versions];
+    }
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
@@ -155,106 +170,21 @@
 }
 
 - (IBAction)emailScreenshot:(id)sender {
-    [self captureScreen];
+    [self captureScreenshot];
 }
 
 -(void)errorAlert:(NSString*)title message:(NSString*)message{
-    UIAlertController *alertController = [UIAlertController
-                                          alertControllerWithTitle:title
-                                          message:message
-                                          preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction
-                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
-                               style:UIAlertActionStyleDefault
-                               handler:nil];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:okAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-#pragma mark - Send Screenshot
-
-- (void) captureScreen {
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, [UIScreen mainScreen].scale);
-    else
-        UIGraphicsBeginImageContext(self.view.bounds.size);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    NSData * data = UIImagePNGRepresentation(image);
-    NSString* filePath = [self getFilepath];
-    [data writeToFile:filePath atomically:YES];
-    [self showEmail];
-}
-
-- (void)showEmail {
-    // Email Subject
-    NSString *emailTitle = @"Your RedEye Bill";
-    // Email Content
-    NSString *messageBody = [[NSString alloc] initWithFormat:@"Hi %@ \n\n Here is your latest bill. \n\n Thanks  \n\n The RedEye Team", self.selectedBill.company.name];
-    // To address
-    NSArray *toRecipents = [NSArray arrayWithObject:self.selectedBill.company.email];
-    
-    //create mail composer
-    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-    mc.mailComposeDelegate = self;
-    [mc setSubject:emailTitle];
-    [mc setMessageBody:messageBody isHTML:NO];
-    [mc setToRecipients:toRecipents];
-    
-    NSString* filePath = [self getFilepath];
-    //read the file using NSData
-    NSData * fileData = [NSData dataWithContentsOfFile:filePath];
-    // Set the MIME type
-    NSString *mimeType = @"image/png";
-    
-    //add attachement
-    [mc addAttachmentData:fileData mimeType:mimeType fileName:[[NSString alloc] initWithFormat:@"%@-RedEyeBill-%@", self.selectedBill.company.name, [[Utils alloc] formatDateToDateString:self.selectedBill.lastUpdated]]];
-
-    // present the view controller
-    [self presentViewController:mc animated:YES completion:NULL];
-}
-
-//get the filepath from resources
--(NSString*) getFilepath{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0]; //Get the docs directory
-   return [documentsPath stringByAppendingPathComponent:@"screenshot.png"];
-}
-
-- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
-    switch (result)
-    {
-        case MFMailComposeResultCancelled:
-            NSLog(@"Mail cancelled");
-            break;
-        case MFMailComposeResultSaved:
-            NSLog(@"Mail saved");
-            break;
-        case MFMailComposeResultSent:
-            NSLog(@"Mail sent");
-            break;
-        case MFMailComposeResultFailed:
-            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
-            break;
-        default:
-            break;
-    }
-    // Close the Mail Interface
-    [self dismissViewControllerAnimated:YES completion:NULL];
-    if (error) {
-        UIAlertController *alertController = [UIAlertController
-                                              alertControllerWithTitle:@"Mail sent failure"
-                                              message:[[NSString alloc] initWithFormat:@"%@", [error localizedDescription]]
-                                              preferredStyle:UIAlertControllerStyleAlert];
-        [self presentViewController:alertController animated:YES completion:nil];
-    }
-}
 
 #pragma mark - Table View Actions
 
 - (IBAction)didSelectEditTiersButton:(id)sender {
+    //switch the editing state of the table view
     if (self.tableView.editing) {
         [self.editTiersButton setTitle:@"Edit Tiers" forState:UIControlStateNormal];
         [self.tableView setEditing:NO animated:NO];
@@ -273,14 +203,23 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:textField.tag inSection:0];
     TierTableViewCell *cell = (TierTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-    float priceArtefactPerMonth = [cell.priceArtefactPerMonthTextField.text floatValue];
-    if(priceArtefactPerMonth > 0){
-        cell.tier.priceArtefactPerMonth = [[NSNumber alloc] initWithFloat:priceArtefactPerMonth];
+    
+    if(textField == cell.priceArtefactPerMonthTextField){
+        if ([[Utils getInstance] isValidNumber:cell.priceArtefactPerMonthTextField.text] && [cell.priceArtefactPerMonthTextField.text floatValue] >=0.0) {
+            cell.tier.priceArtefactPerMonth = [[NSNumber alloc] initWithFloat:[cell.priceArtefactPerMonthTextField.text floatValue]];
+        } else {
+            [self errorAlert:@"Incorrect Number" message:@"The price artefact per month text you entered wasn't a valid number. It must be greater than or equal to 0."];
+            cell.priceArtefactPerMonthTextField.text = [[NSString alloc] initWithFormat:@"$%.02f", [cell.tier.priceArtefactPerMonth floatValue]];
+        }
+    } else if (textField == cell.artefactMaxTextField){
+        if ([[Utils getInstance] isValidNumber:cell.artefactMaxTextField.text] && [cell.artefactMaxTextField.text intValue] > 1) {
+            cell.tier.artefactMax = [[NSNumber alloc] initWithInt:[cell.artefactMaxTextField.text intValue]];
+        } else {
+            [self errorAlert:@"Incorrect Number" message:@"The price artefact per month text you entered wasn't a valid number. It must be greater than or equal to 0."];
+            cell.artefactMaxTextField.text = [[NSString alloc] initWithFormat:@"%@", cell.tier.artefactMax];
+        }
     }
-    int artefactMax = [cell.artefactMaxTextField.text intValue];
-    if(artefactMax > 0){
-        cell.tier.artefactMax = [[NSNumber alloc] initWithInt:artefactMax];
-    }
+    
     [self updateCalculations];
 }
 
@@ -436,6 +375,84 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+}
+
+#pragma mark - Send Screenshot
+
+- (void) captureScreenshot {
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, [UIScreen mainScreen].scale);
+    } else {
+        UIGraphicsBeginImageContext(self.view.bounds.size);
+    }
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    NSData * data = UIImagePNGRepresentation(image);
+    NSString* filePath = [self getFilepath];
+    [data writeToFile:filePath atomically:YES];
+    [self showEmail];
+}
+
+- (void)showEmail {
+    // Email Subject
+    NSString *emailTitle = @"Your RedEye Bill";
+    // Email Content
+    NSString *messageBody = [[NSString alloc] initWithFormat:@"Hi %@ \n\n Here is your latest bill. \n\n Thanks  \n\n The RedEye Team", self.selectedBill.company.name];
+    // To address
+    NSArray *toRecipents = [NSArray arrayWithObject:self.selectedBill.company.email];
+    
+    //create mail composer
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setToRecipients:toRecipents];
+    
+    NSString* filePath = [self getFilepath];
+    //read the file using NSData
+    NSData * fileData = [NSData dataWithContentsOfFile:filePath];
+    // Set the MIME type
+    NSString *mimeType = @"image/png";
+    
+    //add attachement
+    [mc addAttachmentData:fileData mimeType:mimeType fileName:[[NSString alloc] initWithFormat:@"%@-RedEyeBill-%@", self.selectedBill.company.name, [[Utils getInstance] formatDateToDateString:self.selectedBill.lastUpdated]]];
+    
+    // present the view controller
+    [self presentViewController:mc animated:YES completion:NULL];
+}
+
+//get the filepath from resources
+-(NSString*) getFilepath{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0]; //Get the docs directory
+    return [documentsPath stringByAppendingPathComponent:@"screenshot.png"];
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    if (error) {
+        [self errorAlert:@"Mail sent failure" message:[[NSString alloc] initWithFormat:@"%@", [error localizedDescription]]];
+    }
 }
 
 #pragma mark UIGestureRecognizer methods

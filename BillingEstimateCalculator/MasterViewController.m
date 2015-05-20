@@ -108,7 +108,7 @@
     cell.nameLabel.text = bill.name;
     cell.titleLabel.text = bill.title;
     cell.companyLabel.text = bill.company.name;
-    cell.lastUpdatedLabel.text = [[Utils alloc] formatDateToDateTimeString:bill.lastUpdated];
+    cell.lastUpdatedLabel.text = [[Utils getInstance] formatDateToDateTimeString:bill.lastUpdated];
 }
 
 #pragma mark - Fetched results controller

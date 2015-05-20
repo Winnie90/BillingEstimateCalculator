@@ -10,8 +10,10 @@
 
 @interface Utils : NSObject
 
++(Utils*)getInstance;
 -(NSString*) formatDateToDateString:(NSDate*)date;
 -(NSString*) formatDateToDateTimeString:(NSDate*)date;
 -(BOOL) isValidEmailAddress:(NSString*)checkString;
+-(BOOL) isValidNumber:(NSString*)checkText;
 @end
 
