@@ -21,4 +21,11 @@
     format.dateFormat = @"HH:mm:ss dd-MM-yyyy";
     return [format stringFromDate:date];
 }
+
+-(BOOL) isValidEmailAddress:(NSString*)checkString{
+    //lax email regex
+    NSString *emailRegex = @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
 @end

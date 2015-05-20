@@ -768,7 +768,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                 <connections>
-                                    <action selector="didUpdateEmail:" destination="JEX-9P-axG" eventType="editingChanged" id="psa-GQ-sjI"/>
+                                    <action selector="didUpdateEmail:" destination="JEX-9P-axG" eventType="editingDidEnd" id="51l-bH-hki"/>
                                     <action selector="setNewTextField:" destination="JEX-9P-axG" eventType="editingDidBegin" id="L1x-pw-dwA"/>
                                 </connections>
                             </textField>

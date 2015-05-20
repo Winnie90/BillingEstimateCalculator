@@ -12,5 +12,6 @@
 
 -(NSString*) formatDateToDateString:(NSDate*)date;
 -(NSString*) formatDateToDateTimeString:(NSDate*)date;
+-(BOOL) isValidEmailAddress:(NSString*)checkString;
 @end
 

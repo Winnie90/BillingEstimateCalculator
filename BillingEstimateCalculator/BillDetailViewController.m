@@ -118,8 +118,13 @@
 }
 
 - (IBAction)didUpdateEmail:(id)sender {
-    self.selectedBill.company.email = self.emailTextField.text;
-    [self updateBill];
+    if ([[Utils alloc] isValidEmailAddress:self.emailTextField.text]) {
+        self.selectedBill.company.email = self.emailTextField.text;
+        [self updateBill];
+    } else {
+        [self errorAlert:@"Incorrect Email" message:@"The email address you entered wasn't valid."];
+        self.emailTextField.text = self.selectedBill.company.email;
+    }
 }
 
 - (IBAction)didUpdatePhone:(id)sender {
@@ -151,6 +156,19 @@
 
 - (IBAction)emailScreenshot:(id)sender {
     [self captureScreen];
+}
+
+-(void)errorAlert:(NSString*)title message:(NSString*)message{
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:title
+                                          message:message
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Send Screenshot
