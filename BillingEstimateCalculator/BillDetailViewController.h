@@ -15,7 +15,6 @@
 @property (strong, nonatomic) Bill *selectedBill;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic) NSInteger *numberOfSections;
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextField *customerIdTextField;

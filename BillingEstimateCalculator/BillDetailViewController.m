@@ -11,14 +11,14 @@
 #import "Utils.h"
 #import "TierTableViewCell.h"
 #import "Tier+Management.h"
+#import "NSString+Common.h"
 
 @interface BillDetailViewController ()
     @property (weak, nonatomic) UITextField *currentTextField;
+    @property (nonatomic) CGSize keyboardSize;
 @end
 
 @implementation BillDetailViewController
-
-#pragma mark - Managing the detail item
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,6 +28,16 @@
     }
     [self configureView];
     [self setupGestureRecognizer];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getKeyboardHeight:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)setSelectedBill:(id)newDetailItem {
@@ -42,7 +52,7 @@
     if (self.selectedBill) {
         [self setupBillDetails];
         [self setupCustomerDetails];
-        [self updateCalculations];
+        [self performCalulations];
     }
 }
 
@@ -70,13 +80,17 @@
 // Kept calculations in the model to make viewcontroller code cleaner,
 // Could cache results to reduce running calculations multiple times
 - (void)updateCalculations{
+    [self performCalulations];
+    [self updateBill];
+}
+
+- (void)performCalulations{
     self.removedArtefactsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill removedArtefacts]];
     self.foldedVersionsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill foldedInVersions]];
     self.totalUnitsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill totalUnits]];
     self.pricePerMonthLabel.text = [[NSString alloc] initWithFormat: @"$%.02f", [self.selectedBill pricePerMonth]];
     self.averagePricePerDrawingPerMonthLabel.text = [[NSString alloc] initWithFormat: @"$%.02f", [self.selectedBill averagePricePerDrawingPerMonth]];
     self.pricePerYearLabel.text = [[NSString alloc] initWithFormat: @"$%.02f", [self.selectedBill pricePerYear]];
-    [self updateBill];
 }
 
 - (void) updateBillDate{
@@ -121,42 +135,70 @@
 }
 
 - (IBAction)didUpdateEmail:(id)sender {
-    if ([[Utils getInstance] isValidEmailAddress:self.emailTextField.text]) {
-        self.selectedBill.company.email = self.emailTextField.text;
-        [self updateBill];
+    if (![self.emailTextField.text isBlank]) {
+        if ([self.emailTextField.text isValidEmailAddress]) {
+            self.selectedBill.company.email = self.emailTextField.text;
+            [self updateBill];
+        } else {
+            [self errorAlert:@"Incorrect Email" message:@"The email address you entered wasn't valid"];
+            self.emailTextField.text = nil;
+            self.emailTextField.placeholder = self.selectedBill.company.email;
+        }
     } else {
-        [self errorAlert:@"Incorrect Email" message:@"The email address you entered wasn't valid"];
-        self.emailTextField.text = self.selectedBill.company.email;
+        [self errorAlert:@"Blank Email" message:@"The email address you entered was blank"];
+        self.emailTextField.text = nil;
+        self.emailTextField.placeholder = self.selectedBill.company.email;
     }
 }
 
 - (IBAction)didUpdateEstimatedArtefacts:(id)sender {
-    if ([[Utils getInstance] isValidNumber:self.estimatedArtefactsTextField.text]) {
-        self.selectedBill.estimatedArtefacts = [[NSNumber alloc] initWithInt:[self.estimatedArtefactsTextField.text intValue]];
-        [self updateCalculations];
+    if (![self.estimatedArtefactsTextField.text isBlank]) {
+        if ([self.estimatedArtefactsTextField.text isValidNumber]) {
+            self.selectedBill.estimatedArtefacts = [[NSNumber alloc] initWithInt:[self.estimatedArtefactsTextField.text intValue]];
+            [self updateCalculations];
+        } else {
+            [self errorAlert:@"Incorrect Number" message:@"The estimated artefacts text you entered wasn't a valid number"];
+            self.estimatedArtefactsTextField.text = nil;
+            self.estimatedArtefactsTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.estimatedArtefacts];
+        }
     } else {
-        [self errorAlert:@"Incorrect Number" message:@"The estimated artefacts text you entered wasn't a valid number"];
-        self.estimatedArtefactsTextField.text = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.estimatedArtefacts];
+        [self errorAlert:@"Incorrect Number" message:@"The estimated artefacts text you entered was blank"];
+        self.estimatedArtefactsTextField.text = nil;
+        self.estimatedArtefactsTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.estimatedArtefacts];
     }
 }
 
 - (IBAction)didUpdateDuplicates:(id)sender {
-    if ([[Utils getInstance] isValidNumber:self.duplicatesTextField.text] && [self.duplicatesTextField.text floatValue]<=100.0) {
-        self.selectedBill.duplicates = [[NSNumber alloc] initWithFloat:[self.duplicatesTextField.text floatValue]/100];
-        [self updateCalculations];
+    if (![self.duplicatesTextField.text isBlank]) {
+        if ([self.duplicatesTextField.text isValidNumber] && [self.duplicatesTextField.text floatValue]<=100.0) {
+            self.selectedBill.duplicates = [[NSNumber alloc] initWithFloat:[self.duplicatesTextField.text floatValue]/100];
+            [self updateCalculations];
+        } else {
+            [self errorAlert:@"Incorrect Number" message:@"The duplicates text you entered wasn't a valid number. It must be less than 100%."];
+            self.duplicatesTextField.text = nil;
+            self.duplicatesTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.duplicates];
+        }
     } else {
-        [self errorAlert:@"Incorrect Number" message:@"The duplicates text you entered wasn't a valid number. It must be less than 100%."];
-        self.duplicatesTextField.text = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.duplicates];
+        [self errorAlert:@"Incorrect Number" message:@"The duplicates text you entered was blank"];
+        self.duplicatesTextField.text = nil;
+        self.duplicatesTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.duplicates];
     }
 }
 
 - (IBAction)didUpdateVersions:(id)sender {
-    if ([[Utils getInstance] isValidNumber:self.versionsTextField.text] && [self.versionsTextField.text floatValue]<=100.0) {
-        self.selectedBill.versions = [[NSNumber alloc] initWithFloat:[self.versionsTextField.text floatValue]/100];
-        [self updateCalculations];
+    if (![self.versionsTextField.text isBlank]) {
+        if ([self.versionsTextField.text isValidNumber] && [self.versionsTextField.text floatValue]<=100.0) {
+            self.selectedBill.versions = [[NSNumber alloc] initWithFloat:[self.versionsTextField.text floatValue]/100];
+            [self updateCalculations];
+        } else {
+            [self errorAlert:@"Incorrect Number" message:@"The versions text you entered wasn't a valid number. It must be less than 100%."];
+            self.versionsTextField.text = nil;
+            self.versionsTextField.text = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.versions];
+        }
     } else {
-        [self errorAlert:@"Incorrect Number" message:@"The versions text you entered wasn't a valid number. It must be less than 100%."];
-        self.versionsTextField.text = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.versions];
+        [self errorAlert:@"Incorrect Number" message:@"The versions text you entered was blank"];
+        self.versionsTextField.text = nil;
+        self.versionsTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", self.selectedBill.versions];
     }
 }
 
@@ -202,18 +244,20 @@
     TierTableViewCell *cell = (TierTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
     if(textField == cell.priceArtefactPerMonthTextField){
-        if ([[Utils getInstance] isValidNumber:cell.priceArtefactPerMonthTextField.text] && [cell.priceArtefactPerMonthTextField.text floatValue] >=0.0) {
+        if (![cell.priceArtefactPerMonthTextField.text isBlank] && [cell.priceArtefactPerMonthTextField.text isValidNumber] && [cell.priceArtefactPerMonthTextField.text floatValue] >=0.0) {
             cell.tier.priceArtefactPerMonth = [[NSNumber alloc] initWithFloat:[cell.priceArtefactPerMonthTextField.text floatValue]];
         } else {
             [self errorAlert:@"Incorrect Number" message:@"The price artefact per month text you entered wasn't a valid number. It must be greater than or equal to 0."];
-            cell.priceArtefactPerMonthTextField.text = [[NSString alloc] initWithFormat:@"$%.02f", [cell.tier.priceArtefactPerMonth floatValue]];
+            cell.priceArtefactPerMonthTextField.text = nil;
+            cell.priceArtefactPerMonthTextField.placeholder = [[NSString alloc] initWithFormat:@"$%.02f", [cell.tier.priceArtefactPerMonth floatValue]];
         }
     } else if (textField == cell.artefactMaxTextField){
-        if ([[Utils getInstance] isValidNumber:cell.artefactMaxTextField.text] && [cell.artefactMaxTextField.text intValue] > 1) {
+        if (![cell.artefactMaxTextField.text isBlank] && [cell.artefactMaxTextField.text isValidNumber] && [cell.artefactMaxTextField.text intValue] > 1) {
             cell.tier.artefactMax = [[NSNumber alloc] initWithInt:[cell.artefactMaxTextField.text intValue]];
         } else {
             [self errorAlert:@"Incorrect Number" message:@"The price artefact per month text you entered wasn't a valid number. It must be greater than or equal to 0."];
-            cell.artefactMaxTextField.text = [[NSString alloc] initWithFormat:@"%@", cell.tier.artefactMax];
+            cell.artefactMaxTextField.text = nil;
+            cell.artefactMaxTextField.placeholder = [[NSString alloc] initWithFormat:@"%@", cell.tier.artefactMax];
         }
     }
     
@@ -481,11 +525,39 @@
 - (IBAction)setNewTextField:(id)sender{
     UITextField *textField = (UITextField*)sender;
     self.currentTextField = textField;
+    [self keyboardWillShow];
 }
 
 - (IBAction)textFieldFinished:(id)sender
 {
     [sender resignFirstResponder];
+}
+
+#pragma mark Keyboard show methods
+
+-(void)getKeyboardHeight:(NSNotification *)notification {
+    self.keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+}
+
+- (void)keyboardWillShow {
+    NSLog(@"%f", self.currentTextField.frame.origin.y);
+    if (self.currentTextField.frame.origin.y > 250) {
+        float newVerticalPosition = -self.keyboardSize.height;
+        [self moveFrameToVerticalPosition:newVerticalPosition forDuration:0.3f];
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    [self moveFrameToVerticalPosition:0.0f forDuration:0.3f];
+}
+
+- (void)moveFrameToVerticalPosition:(float)position forDuration:(float)duration {
+    CGRect frame = self.view.frame;
+    frame.origin.y = position;
+    
+    [UIView animateWithDuration:duration animations:^{
+        self.view.frame = frame;
+    }];
 }
 
 #pragma mark Memory warning methods

@@ -37,6 +37,7 @@
 		837189D31B0BF4AD00BF9A2C /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 837189C71B0BF4AD00BF9A2C /* icon144.png */; };
 		837189D41B0BF4AD00BF9A2C /* icon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 837189C81B0BF4AD00BF9A2C /* icon152.png */; };
 		837189D51B0BF4AD00BF9A2C /* icon154.png in Resources */ = {isa = PBXBuildFile; fileRef = 837189C91B0BF4AD00BF9A2C /* icon154.png */; };
+		837189D81B0CB73D00BF9A2C /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 837189D71B0CB73D00BF9A2C /* NSString+Common.m */; };
 		83B46F361B06860300884297 /* BillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B46F351B06860300884297 /* BillTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,8 @@
 		837189C71B0BF4AD00BF9A2C /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		837189C81B0BF4AD00BF9A2C /* icon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon152.png; sourceTree = "<group>"; };
 		837189C91B0BF4AD00BF9A2C /* icon154.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon154.png; sourceTree = "<group>"; };
+		837189D71B0CB73D00BF9A2C /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
+		837189D91B0CB75500BF9A2C /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
 		83B46F341B06860300884297 /* BillTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableViewCell.h; sourceTree = "<group>"; };
 		83B46F351B06860300884297 /* BillTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +149,7 @@
 				8338E70B1B05F7C2002EA426 /* Model */,
 				8338E7151B05FB03002EA426 /* ViewControllers */,
 				8338E7161B05FB2F002EA426 /* Utils */,
+				837189D61B0CB6CF00BF9A2C /* Categories */,
 				8338E7171B05FB45002EA426 /* UI */,
 				8338E7181B05FB5F002EA426 /* Images */,
 				8338E6CC1B05F27B002EA426 /* Supporting Files */,
@@ -249,6 +253,15 @@
 				837189BC1B0BF30300BF9A2C /* Images.xcassets */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		837189D61B0CB6CF00BF9A2C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				837189D91B0CB75500BF9A2C /* NSString+Common.h */,
+				837189D71B0CB73D00BF9A2C /* NSString+Common.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		83B46F331B0685C200884297 /* Cells */ = {
@@ -381,6 +394,7 @@
 				8371897D1B09DBB400BF9A2C /* Tier.m in Sources */,
 				8338E7261B063A03002EA426 /* Company+Management.m in Sources */,
 				8338E7111B05F7F0002EA426 /* Bill.m in Sources */,
+				837189D81B0CB73D00BF9A2C /* NSString+Common.m in Sources */,
 				8338E71E1B05FED7002EA426 /* Bill+Management.m in Sources */,
 				8338E6D81B05F27B002EA426 /* MasterViewController.m in Sources */,
 				8338E7221B0628D2002EA426 /* Tier+Management.m in Sources */,

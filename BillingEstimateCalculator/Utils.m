@@ -39,23 +39,7 @@ static Utils *mgr = nil;
     return [format stringFromDate:date];
 }
 
--(BOOL) isValidEmailAddress:(NSString*)checkString{
-    //lax email regex
-    NSString *emailRegex = @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    return [emailTest evaluateWithObject:checkString];
-}
-
--(BOOL) isValidNumber:(NSString*)checkText{
-    NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-    //Set the locale to US
-    [numberFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-    //Set the number style to Scientific
-    [numberFormatter setNumberStyle:NSNumberFormatterScientificStyle];
-    NSNumber* number = [numberFormatter numberFromString:checkText];
-    if (number != nil) {
-        return TRUE;
-    }
-    return FALSE;
+-(BOOL) isStringBlank:(NSString*)checkString{
+    return [checkString length] == 0;
 }
 @end
