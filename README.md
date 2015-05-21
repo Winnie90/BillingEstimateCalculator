@@ -4,7 +4,8 @@ MVC architecture and faithfully recreates the functionality exposed by a Billing
 
 Setup 
 
-Uses Cocoapods for dependencies - https://cocoapods.org/ 
+Uses Cocoapods for dependencies - https://cocoapods.org/
+
 Make sure you run - 
 ```
   pod install
