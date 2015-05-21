@@ -83,6 +83,7 @@
     self.customerIdTextField.placeholder = self.selectedBill.company.customerId;
     self.companyNameTextField.placeholder = self.selectedBill.company.name;
     self.addressTextView.text = self.selectedBill.company.address;
+    self.addressTextView.textColor = [UIColor lightGrayColor];
     self.emailTextField.placeholder = self.selectedBill.company.email;
     self.mobileTextField.placeholder = self.selectedBill.company.mobile;
     self.phoneTextField.placeholder = self.selectedBill.company.phone;
@@ -175,6 +176,11 @@
     }
 }
 
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    textView.text = @"";
+    textView.textColor = [UIColor blackColor];
+}
+    
 - (void)textViewDidChange:(UITextView *)textView{
     if(textView == self.addressTextView){
         self.selectedBill.company.address = self.addressTextView.text;
@@ -194,12 +200,11 @@
 
 - (void)runHelpTooltips{
     self.tooltipManager = [[JDFSequentialTooltipManager alloc] initWithHostView:self.view];
-    [self.tooltipManager addTooltipWithTargetView:self.billNameTextField hostView:self.view tooltipText:@"Enter your bill details here by tapping on the grey placeholders." arrowDirection:JDFTooltipViewArrowDirectionLeft width:200.0f];
+    [self.tooltipManager addTooltipWithTargetView:self.billNameTextField hostView:self.view tooltipText:@"Enter your bill details here by tapping on the grey placeholders." arrowDirection:JDFTooltipViewArrowDirectionRight width:200.0f];
     [self.tooltipManager addTooltipWithTargetView:self.companyNameTextField hostView:self.view tooltipText:@"Enter your company details here." arrowDirection:JDFTooltipViewArrowDirectionLeft width:200.0f];
     [self.tooltipManager addTooltipWithTargetView:self.estimatedArtefactsTextField hostView:self.view tooltipText:@"Update your billing numbers here. Calculations will update automatically." arrowDirection:JDFTooltipViewArrowDirectionLeft width:200.0f];
     [self.tooltipManager addTooltipWithTargetView:self.tableView hostView:self.view tooltipText:@"You can add, edit and remove tiers here. Calculations will update automatically." arrowDirection:JDFTooltipViewArrowDirectionDown width:200.0f];
-    
-    //[self.tooltipManager addTooltipWithTargetView:nil hostView:self.view tooltipText:@"You can send your bill to the client by pressing the compose bar button." arrowDirection:JDFTooltipViewArrowDirectionUp width:200.0f];
+    [self.tooltipManager addTooltipWithTargetBarButtonItem:self.navigationItem.rightBarButtonItem hostView:self.view tooltipText:@"You can send your bill to the client by pressing the compose bar button." arrowDirection:JDFTooltipViewArrowDirectionUp width:200.0f];
     self.tooltipManager.showsBackdropView = YES;
     [self.tooltipManager showNextTooltip];
 }
