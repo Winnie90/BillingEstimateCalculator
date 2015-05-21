@@ -2,7 +2,8 @@
 A coding challenge to design an iOS app that estimates customer's bills. The iOS app uses a
 MVC architecture and faithfully recreates the functionality exposed by a Billing Estimation Module. 
 
-Uses <href alt="Cocoapods" src="https://cocoapods.org/">Cocoapods</a> for Joe Fryers' <href src="https://github.com/JoeFryer/JDFTooltips">JDFTooltips</a>.
+Uses Cocoapods - https://cocoapods.org/ for Joe Fryers' 
+JDFTooltips - https://github.com/JoeFryer/JDFTooltips
 
 Make sure you run - 
 ```
