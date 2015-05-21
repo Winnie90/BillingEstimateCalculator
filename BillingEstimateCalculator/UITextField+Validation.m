@@ -26,7 +26,7 @@
 - (BOOL)validNumber:(UIViewController*)vc errorString:(NSString*)errorString{
     BOOL valid = TRUE;
     valid = [self notBlank:vc];
-    if(![self.text isValidNumber]){
+    if(valid && ![self.text isValidNumber]){
         [[Utils getInstance] errorAlert:vc title:@"Invalid Number" message:@"Number is not valid please enter a valid number."];
         valid = FALSE;
     }
@@ -37,7 +37,7 @@
 - (BOOL)validPercentage:(UIViewController*)vc errorString:(NSString*)errorString{
     BOOL valid = TRUE;
     valid = [self validNumber:vc errorString:errorString];
-    if ([self.text floatValue] > 100.0) {
+    if (valid && [self.text floatValue] > 100.0) {
         [[Utils getInstance] errorAlert:vc title:@"Invalid Number" message:@"Number is not a valid percentage."];
         valid = FALSE;
     }
@@ -48,7 +48,7 @@
 - (BOOL)greaterThan:(int)number vc:(UIViewController*)vc errorString:(NSString*)errorString{
     BOOL valid = TRUE;
     valid = [self validNumber:vc errorString:errorString];
-    if ([self.text floatValue] < number) {
+    if (valid && [self.text floatValue] < number) {
         [[Utils getInstance] errorAlert:vc title:@"Invalid Number" message:[[NSString alloc] initWithFormat:@"Number needs to be greater than %d.", number]];
         valid = FALSE;
     }

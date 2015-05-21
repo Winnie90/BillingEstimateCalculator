@@ -34,6 +34,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getKeyboardHeight:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    UITextField *textField = [[UITextField alloc] init];
+    [[[[UIApplication sharedApplication] windows] lastObject] addSubview:textField];
+    [textField becomeFirstResponder];
+    [textField resignFirstResponder];
+    [textField removeFromSuperview];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -194,19 +199,15 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
-    [textField resignFirstResponder];
-    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:textField.tag inSection:0];
     TierTableViewCell *cell = (TierTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
     if(textField == cell.priceArtefactPerMonthTextField){
         if ([cell.priceArtefactPerMonthTextField greaterThan:0 vc:self errorString:[[NSString alloc] initWithFormat:@"$%.02f", [cell.tier.priceArtefactPerMonth floatValue]]]) {
-            self.currentTextField = cell.priceArtefactPerMonthTextField;
             cell.tier.priceArtefactPerMonth = [[NSNumber alloc] initWithFloat:[cell.priceArtefactPerMonthTextField.text floatValue]];
         }
     } else if (textField == cell.artefactMaxTextField){
         if ([cell.artefactMaxTextField greaterThan:1 vc:self errorString:[[NSString alloc] initWithFormat:@"%@", cell.tier.artefactMax]]) {
-            self.currentTextField = cell.artefactMaxTextField;
             cell.tier.artefactMax = [[NSNumber alloc] initWithInt:[cell.artefactMaxTextField.text intValue]];
         }
     }
@@ -461,31 +462,26 @@
     [self.view addGestureRecognizer:tapGesture];
 }
 
+//text field actions to get rid of keyboard on focus remove
 - (void)hideKeyBoard {
     [self.currentTextField resignFirstResponder];
     [self.addressTextView resignFirstResponder];
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
-    if ([touch.view isDescendantOfView:self.tableView]) {
-        return NO;
-    }
-    return YES;
-}
-
 - (IBAction)setNewTextField:(id)sender{
     UITextField *textField = (UITextField*)sender;
     self.currentTextField = textField;
-    //[self keyboardWillShow];
+    self.currentTextField.placeholder = @"";
 }
 
-- (IBAction)textFieldFinished:(id)sender
-{
+- (IBAction)textFieldFinished:(id)sender{
     [sender resignFirstResponder];
 }
 
+//text field delegate method for tier views
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
+    self.currentTextField = textField;
+    self.currentTextField.placeholder = @"";
     [self keyboardWillShow];
 }
 
@@ -496,7 +492,6 @@
 }
 
 - (void)keyboardWillShow {
-    NSLog(@"%f", self.currentTextField.frame.origin.y);
     float newVerticalPosition = -self.keyboardSize.height+72;
     [self moveFrameToVerticalPosition:newVerticalPosition forDuration:0.3f];
 }
