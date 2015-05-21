@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Bill+Management.h"
 #import <MessageUI/MessageUI.h>
+#import "JDFTooltips.h"
 
 @interface BillDetailViewController : UIViewController <UIGestureRecognizerDelegate, UITextViewDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, MFMailComposeViewControllerDelegate>
 
@@ -16,7 +17,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+//company detail labels and text fields
 @property (weak, nonatomic) IBOutlet UITextField *customerIdTextField;
 @property (weak, nonatomic) IBOutlet UITextField *billNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
@@ -25,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+
+// text view for multiline
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedLabel;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -41,6 +45,9 @@
 
 //edit tiers properties
 @property (weak, nonatomic) IBOutlet UIButton *editTiersButton;
+
+//tooltip properties
+@property (nonatomic, strong) JDFSequentialTooltipManager *tooltipManager;
 
 //update bill detail actions
 - (IBAction)didUpdateBillName:(id)sender;
@@ -62,5 +69,9 @@
 //get to resign view controller
 - (IBAction)setNewTextField:(id)sender;
 - (IBAction)textFieldFinished:(id)sender;
+
+//help button actions
+- (IBAction)helpButtonPressed:(id)sender;
+
 @end
 
