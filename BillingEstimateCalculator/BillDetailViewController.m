@@ -32,6 +32,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    // notification hacks to deal with keyboard overlap
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getKeyboardHeight:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     UITextField *textField = [[UITextField alloc] init];
@@ -83,13 +84,13 @@
 
 #pragma mark - Update bill view methods
 
-// Kept calculations in the model to make viewcontroller code cleaner,
-// Could cache results to reduce running calculations multiple times
 - (void)updateCalculations{
     [self performCalulations];
     [self updateBill];
 }
 
+// Kept calculations in the model to make viewcontroller code cleaner,
+// Could cache results to reduce running calculations multiple times
 - (void)performCalulations{
     self.removedArtefactsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill removedArtefacts]];
     self.foldedVersionsLabel.text = [[NSString alloc] initWithFormat: @"%d", [self.selectedBill foldedInVersions]];
@@ -242,6 +243,7 @@
     cell.priceArtefactPerMonthTextField.placeholder = [[NSString alloc] initWithFormat:@"$%.02f", [tier.priceArtefactPerMonth floatValue]];
     cell.priceArtefactPerMonthTextField.tag = indexPath.row;
     
+    NSLog(@"%@",tier.lowerTier.artefactMax);
     //if tier has a lower tier
     if (!tier.lowerTier) {
         cell.artefactMinLabel.text = @"1 -";
@@ -280,8 +282,8 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        [self.selectedBill refreshTiers];
         [self updateCalculations];
+        [self.selectedBill refreshTiers];
     }
 }
 
@@ -357,7 +359,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:(TierTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            //[self configureCell:(TierTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -460,6 +462,14 @@
                                            action:@selector(hideKeyBoard)];
     tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([touch.view isDescendantOfView:self.tableView]) {
+        return NO;
+    }
+    return YES;
 }
 
 //text field actions to get rid of keyboard on focus remove

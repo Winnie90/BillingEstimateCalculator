@@ -10,8 +10,9 @@
 
 @interface UITextField (Validation)
 
--(BOOL)validEmail:(UIViewController*)vc errorString:(NSString*)errorString;
+- (BOOL)validEmail:(UIViewController*)vc errorString:(NSString*)errorString;
 - (BOOL)validNumber:(UIViewController*)vc errorString:(NSString*)errorString;
 - (BOOL)validPercentage:(UIViewController*)vc errorString:(NSString*)errorString;
 - (BOOL)greaterThan:(int)number vc:(UIViewController*)vc errorString:(NSString*)errorString;
+- (BOOL)notBlank:(UIViewController*)vc;
 @end
