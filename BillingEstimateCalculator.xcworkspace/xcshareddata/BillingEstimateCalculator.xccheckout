@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>332A0D41-2A33-4E57-ABA6-1B4C6C91552B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BillingEstimateCalculator</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>96FB556EBF5315EDE2108071968E3CD01CC56FC2</key>
+		<string>https://github.com/Winnie90/BillingEstimateCalculator.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BillingEstimateCalculator.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>96FB556EBF5315EDE2108071968E3CD01CC56FC2</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Winnie90/BillingEstimateCalculator.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>96FB556EBF5315EDE2108071968E3CD01CC56FC2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>96FB556EBF5315EDE2108071968E3CD01CC56FC2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BillingEstimateCalculator</string>
+		</dict>
+	</array>
+</dict>
+</plist>
