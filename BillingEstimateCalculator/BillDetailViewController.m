@@ -242,8 +242,7 @@
     cell.priceArtefactPerMonthTextField.text = @"";
     cell.priceArtefactPerMonthTextField.placeholder = [[NSString alloc] initWithFormat:@"$%.02f", [tier.priceArtefactPerMonth floatValue]];
     cell.priceArtefactPerMonthTextField.tag = indexPath.row;
-    
-    NSLog(@"%@",tier.lowerTier.artefactMax);
+
     //if tier has a lower tier
     if (!tier.lowerTier) {
         cell.artefactMinLabel.text = @"1 -";
