@@ -5,7 +5,9 @@ MVC architecture and faithfully recreates the functionality exposed by a Billing
 Uses <href alt="Cocoapods" src="https://cocoapods.org/">Cocoapods</a> for Joe Fryers' <href src="https://github.com/JoeFryer/JDFTooltips">JDFTooltips</a>.
 
 Make sure you run - 
+```
   pod install
+```
 
 Open BillingEstimateCalculator.xcworkspace 
 
