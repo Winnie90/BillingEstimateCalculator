@@ -1,6 +1,21 @@
 # Billing Estimate Calculator
 A coding challenge to design an iOS app that estimates customer's bills. The iOS app uses a
 MVC architecture and faithfully recreates the functionality exposed by a Billing Estimation Module. 
+Hope you like it let me know if there are any problems.
+
+Setup 
+
+Uses Cocoapods for dependencies - https://cocoapods.org/
+
+Install Cocoapods first then run - 
+```
+  pod install
+```
+In the BillingEstimateCalculator directory
+
+Afterwards open BillingEstimateCalculator.xcworkspace in XCode not the project file.
+
+Code signing identity is iOS Developer and Provisioning profile is set to Automatic so it should be ok to build and run.
 
 Features
 - Replicates a billing estimate calculator spreadsheet
@@ -12,7 +27,11 @@ Added Features
 - Bills are saved to core data so will still be there when the app is cancelled
 - Can create multiple bills
 - Can send a screenshot of the bill in an email
+- Displays help messages to user on first play and on pressing the help button
 
 Notes
 - I've tested on the simulator and iPad Air let me know if there are problems with other devices
-- Didn't have time to make it look nice on the iPhone
+- I wasn't too sure if you wanted the app for iPhone as well, I can change my Storyboard to incorporate it if needed.
+
+Included Libraries
+- JDFTooltips - https://github.com/JoeFryer/JDFTooltips
