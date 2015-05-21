@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22E5D86BFB031F6E2E848E79 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 555839C98871D1CB7296E3BB /* libPods.a */; };
 		8338E6CF1B05F27B002EA426 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6CE1B05F27B002EA426 /* main.m */; };
 		8338E6D21B05F27B002EA426 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6D11B05F27B002EA426 /* AppDelegate.m */; };
 		8338E6D51B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6D31B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodeld */; };
@@ -40,7 +41,6 @@
 		837189D81B0CB73D00BF9A2C /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 837189D71B0CB73D00BF9A2C /* NSString+Common.m */; };
 		837189DC1B0CC2BF00BF9A2C /* UITextField+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 837189DB1B0CC2BF00BF9A2C /* UITextField+Validation.m */; };
 		83B46F361B06860300884297 /* BillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B46F351B06860300884297 /* BillTableViewCell.m */; };
-		B29E931110767C62DBA1C57B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 555839C98871D1CB7296E3BB /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,7 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				837189B91B0B9B9100BF9A2C /* MessageUI.framework in Frameworks */,
-				B29E931110767C62DBA1C57B /* libPods.a in Frameworks */,
+				22E5D86BFB031F6E2E848E79 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

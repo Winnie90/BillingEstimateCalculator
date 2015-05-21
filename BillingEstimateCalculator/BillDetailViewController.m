@@ -198,6 +198,7 @@
     [self.tooltipManager addTooltipWithTargetView:self.companyNameTextField hostView:self.view tooltipText:@"Enter your company details here." arrowDirection:JDFTooltipViewArrowDirectionLeft width:200.0f];
     [self.tooltipManager addTooltipWithTargetView:self.estimatedArtefactsTextField hostView:self.view tooltipText:@"Update your billing numbers here. Calculations will update automatically." arrowDirection:JDFTooltipViewArrowDirectionLeft width:200.0f];
     [self.tooltipManager addTooltipWithTargetView:self.tableView hostView:self.view tooltipText:@"You can add, edit and remove tiers here. Calculations will update automatically." arrowDirection:JDFTooltipViewArrowDirectionDown width:200.0f];
+    
     //[self.tooltipManager addTooltipWithTargetView:nil hostView:self.view tooltipText:@"You can send your bill to the client by pressing the compose bar button." arrowDirection:JDFTooltipViewArrowDirectionUp width:200.0f];
     self.tooltipManager.showsBackdropView = YES;
     [self.tooltipManager showNextTooltip];

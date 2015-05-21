@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7CFF56A5B5C382B09C51C570"
+               BlueprintIdentifier = "FF4F9F92987A03008C4D684C"
                BuildableName = "libPods-JDFTooltips.a"
                BlueprintName = "Pods-JDFTooltips"
                ReferencedContainer = "container:Pods.xcodeproj">
