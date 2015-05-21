@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22E5D86BFB031F6E2E848E79 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 555839C98871D1CB7296E3BB /* libPods.a */; };
 		8338E6CF1B05F27B002EA426 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6CE1B05F27B002EA426 /* main.m */; };
 		8338E6D21B05F27B002EA426 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6D11B05F27B002EA426 /* AppDelegate.m */; };
 		8338E6D51B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8338E6D31B05F27B002EA426 /* BillingEstimateCalculator.xcdatamodeld */; };
@@ -117,7 +116,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				837189B91B0B9B9100BF9A2C /* MessageUI.framework in Frameworks */,
-				22E5D86BFB031F6E2E848E79 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
