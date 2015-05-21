@@ -680,7 +680,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Examplename" placeholder="Example Bill Name" clearsOnBeginEditing="YES" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="wkg-lG-ToI">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Example Bill Name" clearsOnBeginEditing="YES" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="wkg-lG-ToI">
                                 <rect key="frame" x="73" y="80" width="169" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="Dvb-hv-eCR"/>
