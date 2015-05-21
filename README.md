@@ -2,8 +2,7 @@
 A coding challenge to design an iOS app that estimates customer's bills. The iOS app uses a
 MVC architecture and faithfully recreates the functionality exposed by a Billing Estimation Module. 
 
-Uses Cocoapods - https://cocoapods.org/ for Joe Fryers' 
-JDFTooltips - https://github.com/JoeFryer/JDFTooltips
+Uses Cocoapods - https://cocoapods.org/
 
 Make sure you run - 
 ```
@@ -27,3 +26,6 @@ Added Features
 Notes
 - I've tested on the simulator and iPad Air let me know if there are problems with other devices
 - Didn't have time to make it look nice on the iPhone
+
+Included Libraries
+- JDFTooltips - https://github.com/JoeFryer/JDFTooltips
